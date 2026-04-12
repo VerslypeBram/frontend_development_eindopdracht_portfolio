@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import { cacheLife } from 'next/cache';
+import { Suspense } from 'react';
 
 import { dataset, projectId } from '../sanity/env';
+import HeroSection from './components/feature/HeroSection';
 interface Project {
   _id: string;
   title: string;
@@ -29,10 +31,12 @@ export default async function Home() {
   const projects = await getProjects();
 
   return (
-    <main className="min-h-screen p-8 max-w-4xl mx-auto font-sans">
-      <h1 className="text-4xl font-bold mb-8">Mijn Portfolio PoC</h1>
+    <main className="min-h-screen font-sans">
+      <Suspense>
+        <HeroSection />
+      </Suspense>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project) => (
           <div key={project._id} className="border border-gray-200 rounded-lg p-4 shadow-sm">
             {project.cloudinaryUrl && (
