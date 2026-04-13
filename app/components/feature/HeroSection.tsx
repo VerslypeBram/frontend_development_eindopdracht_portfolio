@@ -1,8 +1,8 @@
 import { cacheLife } from 'next/cache';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { client } from '@/sanity/lib/client';
 import Button from '@/app/components/common/Button';
-import FanPhotoCarousel from '@/app/components/feature/FanPhotoCarousel';
 
 interface HeroData {
   tagline: string;
@@ -22,9 +22,6 @@ export default async function HeroSection() {
   const hero = await getHero();
 
   if (!hero) return null;
-
-  // Combine the primary URL with any extra URLs into one ordered array
-  const photos = [...(hero.cloudinaryUrl ? [hero.cloudinaryUrl] : []), ...(hero.cloudinaryUrls?.filter(Boolean) ?? [])];
 
   return (
     <section className="w-full max-w-6xl mx-auto px-6 py-20 md:py-32 flex flex-col md:flex-row items-center gap-16">
@@ -48,8 +45,12 @@ export default async function HeroSection() {
         </div>
       </div>
 
-      {/* Fan photo carousel */}
-      {photos.length > 0 && <FanPhotoCarousel photos={photos} name={hero.name} />}
+      {/* Hero Image */}
+      {hero.cloudinaryUrl && (
+        <div className="shrink-0 relative w-72 h-80 md:w-80 md:h-96 rounded-2xl overflow-hidden shadow-xl">
+          <Image src={hero.cloudinaryUrl} alt={`Photo of ${hero.name}`} fill sizes="(max-width: 768px) 288px, 320px" className="object-cover transition-transform duration-500 hover:scale-120" priority />
+        </div>
+      )}
     </section>
   );
 }
