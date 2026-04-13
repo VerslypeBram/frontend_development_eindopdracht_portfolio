@@ -19,6 +19,13 @@ const project = {
       type: 'url',
       description: 'Plak hier de geoptimaliseerde Cloudinary URL in',
     },
+    {
+      name: 'tags',
+      title: 'Technologieën / Tags',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'Bijv. TypeScript, React, Node.js',
+    },
   ],
 };
 
