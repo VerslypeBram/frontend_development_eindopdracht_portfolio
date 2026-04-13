@@ -26,14 +26,7 @@ const hero = {
       name: 'cloudinaryUrl',
       title: 'Cloudinary Afbeeldings-URL (hoofdfoto)',
       type: 'url',
-      description: 'Plak hier de geoptimaliseerde Cloudinary URL in (eerste foto in de waaier).',
-    },
-    {
-      name: 'cloudinaryUrls',
-      title: 'Extra foto-URLs voor waaier',
-      type: 'array',
-      of: [{ type: 'url' }],
-      description: "Extra foto's die mee rouleren in de waaier-animatie van de headersectie.",
+      description: 'Plak hier de geoptimaliseerde Cloudinary URL in.',
     },
   ],
 };

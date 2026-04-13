@@ -50,7 +50,7 @@ export default function FanPhotoCarousel({ photos, name }: FanPhotoCarouselProps
                 willChange: 'transform, opacity',
               }}
             >
-              <Image src={url} alt={`Photo of ${name}`} fill className="object-cover" priority={position === 0} />
+              <Image src={url} alt={`Photo of ${name}`} fill sizes="(max-width: 768px) 288px, 320px" className="object-cover" priority={position === 0} />
             </div>
           );
         })}
