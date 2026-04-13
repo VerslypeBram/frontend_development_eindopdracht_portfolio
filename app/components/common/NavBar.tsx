@@ -29,7 +29,7 @@ export default function NavBar() {
         {/* Navigation & Actions */}
         <div className="flex items-center gap-8">
           <nav>
-            <ul className="flex items-center gap-6 text-base md:text-lg text-neutral-500 dark:text-neutral-400 font-medium">
+            <ul className="flex items-center gap-6 text-base md:text-lg text-neutral-600 dark:text-neutral-400 font-medium">
               <li>
                 <a href="#about" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
                   About Me

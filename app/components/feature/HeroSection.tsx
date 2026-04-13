@@ -27,13 +27,13 @@ export default async function HeroSection() {
     <section className="w-full max-w-6xl mx-auto px-6 py-20 md:py-32 flex flex-col md:flex-row items-center gap-16">
       {/* Text content */}
       <div className="flex-1 flex flex-col items-start gap-6">
-        {hero.tagline && <span className="text-sm font-semibold tracking-widest uppercase text-neutral-500 dark:text-neutral-400">{hero.tagline}</span>}
+        {hero.tagline && <span className="text-sm font-semibold tracking-widest uppercase text-neutral-600 dark:text-neutral-400">{hero.tagline}</span>}
 
         <h1 className="font-heading text-5xl md:text-6xl font-bold leading-tight text-neutral-900 dark:text-white">
           Hi, I&apos;m <span className="text-amber-600 dark:text-amber-500">{hero.name}</span>
         </h1>
 
-        {hero.bio && <p className="text-base md:text-lg text-neutral-500 dark:text-neutral-400 max-w-md leading-relaxed">{hero.bio}</p>}
+        {hero.bio && <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-md leading-relaxed">{hero.bio}</p>}
 
         <div className="flex items-center gap-4 mt-2">
           <Button href="#projects">
