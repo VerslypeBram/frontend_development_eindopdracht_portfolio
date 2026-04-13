@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 import { dataset, projectId } from '../sanity/env';
 import HeroSection from './components/feature/HeroSection';
 import AboutMe from './components/feature/AboutMe';
+import SkillsSection from './components/feature/SkillsSection';
 interface Project {
   _id: string;
   title: string;
@@ -38,6 +39,8 @@ export default async function Home() {
       </Suspense>
 
       <AboutMe />
+
+      <SkillsSection />
 
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project) => (
