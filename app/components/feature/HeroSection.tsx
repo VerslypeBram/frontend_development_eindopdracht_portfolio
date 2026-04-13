@@ -24,7 +24,7 @@ export default async function HeroSection() {
   if (!hero) return null;
 
   return (
-    <section className="w-full max-w-6xl mx-auto px-6 py-20 md:py-32 flex flex-col md:flex-row items-center gap-16">
+    <section className="min-h-screen w-full max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-16">
       {/* Text content */}
       <div className="flex-1 flex flex-col items-start gap-6">
         {hero.tagline && <span className="text-sm font-semibold tracking-widest uppercase text-neutral-600 dark:text-neutral-400">{hero.tagline}</span>}

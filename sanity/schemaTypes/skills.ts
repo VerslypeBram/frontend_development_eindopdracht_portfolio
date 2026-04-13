@@ -4,18 +4,6 @@ const skills = {
   type: 'document',
   fields: [
     {
-      name: 'preHeading',
-      title: 'Pre-heading',
-      type: 'string',
-      description: 'Small label above the main heading, e.g. "EXPERTISE".',
-    },
-    {
-      name: 'heading',
-      title: 'Heading',
-      type: 'string',
-      description: 'Main section heading, e.g. "Skills & Technologies".',
-    },
-    {
       name: 'skillCategories',
       title: 'Skill Categories',
       type: 'array',

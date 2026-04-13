@@ -3,8 +3,6 @@ import { client } from '@/sanity/lib/client';
 import FanPhotoCarousel from './FanPhotoCarousel';
 
 interface AboutMeData {
-  preHeading: string;
-  heading: string;
   subHeading: string;
   paragraph1: string;
   paragraph2: string;
@@ -14,7 +12,7 @@ interface AboutMeData {
 async function getAboutMe(): Promise<AboutMeData | null> {
   'use cache';
   cacheLife('hours');
-  return client.fetch(`*[_type == "aboutMe"][0]`);
+  return client.fetch(`*[_type == "aboutMe"][0]{subHeading, paragraph1, paragraph2, cloudinaryUrls}`);
 }
 
 export default async function AboutMe() {
@@ -26,8 +24,8 @@ export default async function AboutMe() {
     <section id="about" className="w-full bg-neutral-100 dark:bg-neutral-900">
       <div className="py-24 max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h3 className="text-sm font-semibold tracking-wider text-amber-700 dark:text-amber-500 uppercase mb-3">{data.preHeading || 'About Me'}</h3>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">{data.heading || 'Who I Am'}</h2>
+          <h3 className="text-sm font-semibold tracking-wider text-amber-600 dark:text-amber-500 uppercase mb-3">About Me</h3>
+          <h2 className="font-heading text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">Who I Am</h2>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">

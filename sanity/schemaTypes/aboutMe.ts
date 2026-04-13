@@ -4,18 +4,6 @@ const aboutMe = {
   type: 'document',
   fields: [
     {
-      name: 'preHeading',
-      title: 'Pre-Heading',
-      type: 'string',
-      description: 'Korte label boven de hoofdtitel, bijv. "About Me".',
-    },
-    {
-      name: 'heading',
-      title: 'Heading',
-      type: 'string',
-      description: 'De grote hoofdtitel, bijv. "Who I Am".',
-    },
-    {
       name: 'subHeading',
       title: 'Sub-Heading',
       type: 'string',

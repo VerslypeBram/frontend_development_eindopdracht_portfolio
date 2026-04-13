@@ -9,15 +9,13 @@ interface SkillCategory {
 }
 
 interface SkillsData {
-  preHeading?: string;
-  heading?: string;
   skillCategories: SkillCategory[];
 }
 
 async function getSkills(): Promise<SkillsData | null> {
   'use cache';
   cacheLife('hours');
-  return client.fetch(`*[_type == "skills"][0]`);
+  return client.fetch(`*[_type == "skills"][0]{skillCategories}`);
 }
 
 export default async function SkillsSection() {
@@ -29,8 +27,8 @@ export default async function SkillsSection() {
     <section id="skills" className="w-full bg-[#fafafa] dark:bg-[#0a0a0a]">
       <div className="py-24 max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h3 className="text-sm font-semibold tracking-wider text-amber-700 dark:text-amber-500 uppercase mb-3">{data.preHeading || 'EXPERTISE'}</h3>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">{data.heading || 'Skills & Technologies'}</h2>
+          <h3 className="text-sm font-semibold tracking-wider text-amber-600 dark:text-amber-500 uppercase mb-3">EXPERTISE</h3>
+          <h2 className="font-heading text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">Skills & Technologies</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
