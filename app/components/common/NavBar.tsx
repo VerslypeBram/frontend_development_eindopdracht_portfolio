@@ -29,24 +29,24 @@ export default function NavBar() {
         {/* Navigation & Actions */}
         <div className="flex items-center gap-8">
           <nav>
-            <ul className="flex items-center gap-6 text-base text-neutral-600 dark:text-neutral-400 font-medium">
+            <ul className="flex items-center gap-6 text-base text-neutral-600 dark:text-neutral-300 font-medium">
               <li>
-                <a href="#about" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
+                <a href="#about" className="hover:text-neutral-900 dark:hover:text-white transition-colors underline-offset-4 decoration-amber-500 hover:underline hover:decoration-2">
                   About Me
                 </a>
               </li>
               <li>
-                <a href="#skills" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
+                <a href="#skills" className="hover:text-neutral-900 dark:hover:text-white transition-colors underline-offset-4 decoration-amber-500 hover:underline hover:decoration-2">
                   Expertise
                 </a>
               </li>
               <li>
-                <a href="#projects" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
+                <a href="#projects" className="hover:text-neutral-900 dark:hover:text-white transition-colors underline-offset-4 decoration-amber-500 hover:underline hover:decoration-2">
                   My Work
                 </a>
               </li>
               <li>
-                <a href="contact" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
+                <a href="#contact" className="hover:text-neutral-900 dark:hover:text-white transition-colors underline-offset-4 decoration-amber-500 hover:underline hover:decoration-2">
                   Contact
                 </a>
               </li>
