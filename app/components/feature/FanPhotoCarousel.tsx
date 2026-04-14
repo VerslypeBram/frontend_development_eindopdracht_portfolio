@@ -40,14 +40,11 @@ export default function FanPhotoCarousel({ photos, name }: FanPhotoCarouselProps
           return (
             <div
               key={i}
-              className="absolute inset-0 rounded-2xl overflow-hidden bg-neutral-200 dark:bg-neutral-800 shadow-xl"
+              className="absolute inset-0 rounded-2xl overflow-hidden bg-neutral-200 dark:bg-neutral-800 shadow-xl transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] origin-bottom will-change-[transform,opacity]"
               style={{
                 transform: `rotate(${style.rotation}deg) scale(${style.scale})`,
                 zIndex: photos.length - position,
                 opacity: style.opacity,
-                transition: 'transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.7s ease',
-                transformOrigin: 'bottom center',
-                willChange: 'transform, opacity',
               }}
             >
               <Image src={url} alt={`Photo of ${name}`} fill sizes="(max-width: 768px) 288px, 320px" className="object-cover" priority={position === 0} />
