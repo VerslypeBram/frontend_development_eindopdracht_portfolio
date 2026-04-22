@@ -68,7 +68,7 @@ Wat ik gedaan heb:
 
 Voorbeeld van een Cloudinary transformatie-URL:
 
-https://res.cloudinary.com/<cloud-name>/image/upload/f_auto,q_auto,c_fill,w_1200,h_630/<public-id>.jpg
+https://res.cloudinary.com/'cloud-name'/image/upload/f_auto,q_auto,c_fill,w_1200,h_630/'public-id'.jpg
 
 ## Project lokaal opstarten
 
