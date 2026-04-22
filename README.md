@@ -34,7 +34,10 @@ Wat werkt er in mijn PoC:
 
 Contenttype dat ik nu gebruik:
 
-- project (title, description, cloudinaryUrl)
+- `project` (title, description, cloudinaryUrl, tags)
+- `hero` (name, role, bio, …)
+- `aboutMe` (tekst, afbeelding, …)
+- `skills` (naam, niveau, categorie, …)
 
 ## Fase 2b: SSR + caching + Cloudinary
 
@@ -44,7 +47,7 @@ De data wordt opgehaald in een Server Component (geen useEffect).
 
 Mijn keuze:
 
-- Voor de projectenlijst gebruik ik use cache + cacheLife('hours').
+- Voor de projectenlijst gebruik ik `'use cache'` + `cacheLife('hours')`
 
 Waarom:
 
@@ -66,9 +69,9 @@ Wat ik gedaan heb:
 - In Next.js render ik die met de Image-component.
 - remotePatterns voor res.cloudinary.com staat in de config.
 
-Voorbeeld van een Cloudinary transformatie-URL:
+Een voorbeeld van een Cloudinary transformatie-URL:
 
-https://res.cloudinary.com/<cloud-name>/image/upload/f_auto,q_auto,c_fill,w_1200,h_630/<public-id>.jpg
+`https://res.cloudinary.com/<cloud-name>/image/upload/f_auto,q_auto,c_fill,w_1200,h_630/<public-id>.jpg`
 
 ## Project lokaal opstarten
 
@@ -117,12 +120,12 @@ npm run dev
 
 ### 1. Sanity Studio dashboard
 
-![alt text](image-1.png)
+![Overzicht van het Sanity Studio dashboard met alle content types](image-1.png)
 
 ### 2. Een ingevuld project in Sanity
 
-![alt text](image-2.png)
+![Een ingevuld project-document in Sanity Studio met title, description, cloudinaryUrl en tags](image-2.png)
 
 ### 3. Resultaat op de website
 
-![alt text](image-3.png)
+![De projectenpagina op de lokale Next.js-site met data uit Sanity](image-3.png)
