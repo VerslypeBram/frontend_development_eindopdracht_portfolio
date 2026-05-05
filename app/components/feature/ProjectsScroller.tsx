@@ -34,7 +34,7 @@ function ProjectCard({
             src={project.cloudinaryUrl}
             alt={project.imageAlt || `Photo of ${project.title}`}
             fill
-            sizes="384px"
+            sizes="(max-width: 768px) min(calc(100vw - 2rem), 320px), 384px"
             quality={80}
             className="object-cover transition-transform duration-500 group-hover/card:scale-105"
           />
@@ -94,7 +94,7 @@ function ProjectCard({
       initial="hidden"
       animate={isInView ? 'show' : 'hidden'}
       whileHover={{ y: -8 }}
-      className="group/card flex w-[calc(100vw-3rem)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-[border-color] duration-300 hover:border-amber-500 sm:w-80 md:w-96 dark:border-white/10 dark:bg-white/5 dark:hover:border-amber-500"
+      className="group/card flex w-[min(calc(100vw-2rem),20rem)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-[border-color] duration-300 hover:border-amber-500 md:w-96 dark:border-white/10 dark:bg-white/5 dark:hover:border-amber-500"
       data-cursor-invert
     >
       {project.slug ? (
@@ -183,7 +183,7 @@ export default function ProjectsScroller({ projects }: Props) {
       {/* Scrollable row */}
       <div
         ref={scrollRef}
-        className="flex snap-x snap-mandatory scroll-pl-6 gap-6 overflow-x-auto scroll-smooth px-6 pt-2 pb-4 [scrollbar-width:none] md:scroll-pl-16 md:gap-8 md:px-16 [&::-webkit-scrollbar]:hidden"
+        className="flex snap-x snap-mandatory scroll-pl-4 gap-4 overflow-x-auto scroll-smooth px-4 pt-2 pb-4 [scrollbar-width:none] md:scroll-pl-16 md:gap-8 md:px-16 [&::-webkit-scrollbar]:hidden"
       >
         {projects.map((project, i) => (
           <ProjectCard

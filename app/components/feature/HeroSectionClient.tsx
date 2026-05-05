@@ -125,7 +125,7 @@ export default function HeroSectionClient({
       onMouseLeave={handleMouseLeave}
       className="relative min-h-screen w-full overflow-hidden"
     >
-      <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center gap-16 px-6 md:flex-row">
+      <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center gap-10 px-4 md:flex-row md:gap-16 md:px-6">
         {/* Text column: stagger over children */}
         <motion.div
           className="flex flex-1 flex-col items-start gap-6"
@@ -144,7 +144,7 @@ export default function HeroSectionClient({
 
           <motion.h1
             variants={textItem}
-            className="font-heading text-5xl leading-tight font-bold text-neutral-900 md:text-6xl dark:text-white"
+            className="font-heading text-4xl leading-tight font-bold text-neutral-900 sm:text-5xl md:text-6xl dark:text-white"
           >
             Hi, I&apos;m{' '}
             <span
@@ -184,7 +184,7 @@ export default function HeroSectionClient({
         {/* Profile photo: follows last */}
         {hero.cloudinaryUrl && (
           <motion.div
-            className="relative h-80 w-72 shrink-0 overflow-hidden rounded-2xl shadow-xl md:h-96 md:w-80"
+            className="relative h-64 w-full max-w-xs shrink-0 overflow-hidden rounded-2xl shadow-xl sm:h-72 sm:w-64 md:h-96 md:w-80"
             variants={imageVariant}
             initial="hidden"
             animate="show"
@@ -194,7 +194,7 @@ export default function HeroSectionClient({
               src={hero.cloudinaryUrl}
               alt={hero.imageAlt || `Photo of ${hero.name}`}
               fill
-              sizes="(max-width: 768px) 288px, 320px"
+              sizes="(max-width: 480px) 100vw, (max-width: 768px) 256px, 320px"
               quality={80}
               className="object-cover transition-transform duration-500 hover:scale-[1.2]"
               priority

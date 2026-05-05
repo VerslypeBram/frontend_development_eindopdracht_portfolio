@@ -60,7 +60,7 @@ export default async function ProjectPage({
 
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
-      <div className="mx-auto max-w-6xl px-6 py-10">
+      <div className="mx-auto max-w-6xl px-4 py-8 md:px-6 md:py-10">
         {/* Back button */}
         <Link
           href="/#projects"
@@ -107,7 +107,7 @@ export default async function ProjectPage({
             <p className="mb-2 text-sm font-semibold tracking-wider text-amber-400 uppercase">
               Project
             </p>
-            <h1 className="font-heading text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+            <h1 className="font-heading text-2xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl">
               {project.title}
             </h1>
           </div>
@@ -161,7 +161,7 @@ export default async function ProjectPage({
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-500 hover:shadow-lg dark:bg-amber-500 dark:hover:bg-amber-400"
+                      className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-amber-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-500 hover:shadow-lg dark:bg-amber-500 dark:hover:bg-amber-400"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -189,7 +189,7 @@ export default async function ProjectPage({
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-lg border border-neutral-300 px-6 py-3 text-sm font-semibold text-neutral-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-neutral-900 hover:shadow-lg dark:border-white/20 dark:text-white dark:hover:border-white"
+                      className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-neutral-300 px-6 py-3 text-sm font-semibold text-neutral-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-neutral-900 hover:shadow-lg dark:border-white/20 dark:text-white dark:hover:border-white"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

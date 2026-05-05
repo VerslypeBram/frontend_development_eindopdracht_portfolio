@@ -35,7 +35,7 @@ export default function FanPhotoCarousel({
 
   return (
     <div className="shrink-0">
-      <div className="relative h-80 w-72 md:h-96 md:w-80">
+      <div className="relative h-72 w-64 sm:h-80 sm:w-72 md:h-96 md:w-80">
         {photos.map((photo, i) => {
           // How many steps behind the active card is this card?
           const position = (i - activeIndex + photos.length) % photos.length
@@ -62,7 +62,7 @@ export default function FanPhotoCarousel({
                 src={photo.url}
                 alt={photo.alt || `Photo of ${name}`}
                 fill
-                sizes="(max-width: 768px) 288px, 320px"
+                sizes="(max-width: 480px) 256px, (max-width: 768px) 288px, 320px"
                 quality={80}
                 className="object-cover"
                 priority={position === 0}
@@ -73,14 +73,18 @@ export default function FanPhotoCarousel({
       </div>
       {/* Dot indicators */}
       {photos.length > 1 && (
-        <div className="mt-4 flex justify-center gap-2">
+        <div className="mt-4 flex justify-center gap-1">
           {photos.map((photo, i) => (
             <button
               key={photo.url}
               onClick={() => setActiveIndex(i)}
               aria-label={`Foto ${i + 1}`}
-              className={`h-2 w-2 rounded-full transition-all duration-300 ${i === activeIndex ? 'w-4 bg-amber-500' : 'bg-neutral-300 hover:bg-amber-400 dark:bg-neutral-600'}`}
-            />
+              className="flex h-6 w-6 items-center justify-center"
+            >
+              <span
+                className={`block h-2 rounded-full transition-all duration-300 ${i === activeIndex ? 'w-4 bg-amber-500' : 'w-2 bg-neutral-300 hover:bg-amber-400 dark:bg-neutral-600'}`}
+              />
+            </button>
           ))}
         </div>
       )}
