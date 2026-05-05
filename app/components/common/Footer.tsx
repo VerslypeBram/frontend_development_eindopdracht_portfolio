@@ -2,13 +2,6 @@ import Link from 'next/link'
 import CurrentYear from './CurrentYear'
 import FadeIn from './FadeIn'
 
-const FOOTER_LINKS = [
-  { name: 'About Me', href: '#about' },
-  { name: 'Expertise', href: '#skills' },
-  { name: 'My Work', href: '#projects' },
-  { name: 'Contact', href: '#contact' },
-]
-
 const DEFAULT_SOCIAL_LINKS = [
   {
     platform: 'LinkedIn',

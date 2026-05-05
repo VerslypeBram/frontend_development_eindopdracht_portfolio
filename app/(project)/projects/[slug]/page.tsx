@@ -4,16 +4,18 @@ import Link from 'next/link'
 import { PortableText } from 'next-sanity'
 import type { Metadata } from 'next'
 import { client } from '@/sanity/lib/client'
+import { sanityFetch } from '@/sanity/lib/live'
 import { cloudinaryBlurUrl } from '@/app/lib/cloudinaryBlur'
 import type { Project } from '@/app/types'
 
 async function getProject(slug: string): Promise<Project | null> {
   try {
-    return await client.fetch(
-      `*[_type == "project" && slug.current == $slug][0]{_id, "slug": slug.current, title, description, longDescription, cloudinaryUrl, imageAlt, "tags": tags[]->name, githubUrl, liveUrl}`,
-      { slug },
-      { next: { revalidate: 3600, tags: ['projects'] } },
-    )
+    const { data } = await sanityFetch({
+      query: `*[_type == "project" && slug.current == $slug][0]{_id, "slug": slug.current, title, description, longDescription, cloudinaryUrl, imageAlt, "tags": tags[]->name, githubUrl, liveUrl}`,
+      params: { slug },
+      tags: ['projects'],
+    })
+    return data as Project | null
   } catch (error) {
     console.error('Error fetching project:', error)
     return null

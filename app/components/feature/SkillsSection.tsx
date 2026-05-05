@@ -1,15 +1,15 @@
-import { client } from '@/sanity/lib/client'
+import { sanityFetch } from '@/sanity/lib/live'
 import SkillIcon from '@/app/components/common/SkillIcon'
 import FadeIn from '@/app/components/common/FadeIn'
 import type { SkillsData } from '@/app/types'
 
 async function getSkills(): Promise<SkillsData | null> {
   try {
-    return await client.fetch(
-      `*[_type == "skills"][0]{skillCategories}`,
-      {},
-      { next: { revalidate: 3600, tags: ['skills'] } },
-    )
+    const { data } = await sanityFetch({
+      query: `*[_type == "skills"][0]{skillCategories}`,
+      tags: ['skills'],
+    })
+    return data as SkillsData | null
   } catch (error) {
     console.error('Error fetching skills data:', error)
     return null

@@ -1,4 +1,4 @@
-import { client } from '@/sanity/lib/client'
+import { sanityFetch } from '@/sanity/lib/live'
 
 export interface SiteSettings {
   title: string
@@ -9,16 +9,16 @@ export interface SiteSettings {
 
 export async function getSiteSettings(): Promise<SiteSettings | null> {
   try {
-    return await client.fetch(
-      `*[_type == "siteSettings"][0]{
+    const { data } = await sanityFetch({
+      query: `*[_type == "siteSettings"][0]{
         title,
         navLinks,
         socialLinks,
         footerText
       }`,
-      {},
-      { next: { revalidate: 3600, tags: ['siteSettings'] } },
-    )
+      tags: ['siteSettings'],
+    })
+    return data as SiteSettings | null
   } catch (error) {
     console.error('Error fetching site settings:', error)
     return null

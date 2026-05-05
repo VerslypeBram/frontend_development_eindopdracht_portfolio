@@ -1,15 +1,15 @@
-import { client } from '@/sanity/lib/client'
+import { sanityFetch } from '@/sanity/lib/live'
 import ProjectsScroller from './ProjectsScroller'
 import FadeIn from '@/app/components/common/FadeIn'
 import type { Project } from '@/app/types'
 
 async function getProjects(): Promise<Project[]> {
   try {
-    return await client.fetch(
-      `*[_type == "project"]{_id, "slug": slug.current, title, description, longDescription, cloudinaryUrl, imageAlt, "tags": tags[]->name, githubUrl, liveUrl}`,
-      {},
-      { next: { revalidate: 3600, tags: ['projects'] } },
-    )
+    const { data } = await sanityFetch({
+      query: `*[_type == "project"]{_id, "slug": slug.current, title, description, longDescription, cloudinaryUrl, imageAlt, "tags": tags[]->name, githubUrl, liveUrl}`,
+      tags: ['projects'],
+    })
+    return (data as Project[]) ?? []
   } catch (error) {
     console.error('Error fetching projects data:', error)
     return []

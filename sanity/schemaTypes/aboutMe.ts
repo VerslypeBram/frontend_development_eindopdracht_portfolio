@@ -11,19 +11,19 @@ export default defineType({
       type: 'array',
       of: [{ type: 'block' }],
       description:
-        'Zin onder of in de tekst met evt. span (bijv. From the circuit board to the source code).',
+        'Sentence shown inside the card, optionally with a highlighted span (e.g. "From the circuit board to the source code").',
     }),
     defineField({
       name: 'paragraph1',
-      title: 'Alinea 1',
+      title: 'Paragraph 1',
       type: 'text',
-      description: 'De eerste alinea van jezelf.',
+      description: 'First paragraph introducing yourself.',
     }),
     defineField({
       name: 'paragraph2',
-      title: 'Alinea 2',
+      title: 'Paragraph 2',
       type: 'text',
-      description: "De tweede alinea over je hobby's etc.",
+      description: 'Second paragraph about your hobbies, interests, etc.',
     }),
     defineField({
       name: 'cloudinaryUrls',

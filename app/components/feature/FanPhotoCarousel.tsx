@@ -78,8 +78,8 @@ export default function FanPhotoCarousel({
             <button
               key={photo.url}
               onClick={() => setActiveIndex(i)}
-              aria-label={`Foto ${i + 1}`}
-              className="flex h-6 w-6 items-center justify-center"
+              aria-label={`Photo ${i + 1}`}
+              className="flex h-11 w-11 items-center justify-center"
             >
               <span
                 className={`block h-2 rounded-full transition-all duration-300 ${i === activeIndex ? 'w-4 bg-amber-500' : 'w-2 bg-neutral-300 hover:bg-amber-400 dark:bg-neutral-600'}`}

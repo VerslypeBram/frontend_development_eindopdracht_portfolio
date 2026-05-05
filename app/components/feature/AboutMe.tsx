@@ -1,15 +1,16 @@
-import { client } from '@/sanity/lib/client'
+import { sanityFetch } from '@/sanity/lib/live'
 import FanPhotoCarousel from './FanPhotoCarousel'
 import FadeIn from '@/app/components/common/FadeIn'
 import { PortableText } from '@portabletext/react'
 import type { AboutMeData } from '@/app/types'
+
 async function getAboutMe(): Promise<AboutMeData | null> {
   try {
-    return await client.fetch(
-      `*[_type == "aboutMe"][0]{subHeading, paragraph1, paragraph2, cloudinaryUrls[]{url, alt}}`,
-      {},
-      { next: { revalidate: 3600, tags: ['aboutMe'] } },
-    )
+    const { data } = await sanityFetch({
+      query: `*[_type == "aboutMe"][0]{subHeading, paragraph1, paragraph2, cloudinaryUrls[]{url, alt}}`,
+      tags: ['aboutMe'],
+    })
+    return data as AboutMeData | null
   } catch (error) {
     console.error('Error fetching about me data:', error)
     return null
