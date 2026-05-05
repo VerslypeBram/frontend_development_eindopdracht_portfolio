@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import { Icon } from '@iconify/react';
+import { Icon } from '@iconify/react'
 
 // devicon-plain for most icons (monochrome, consistent weight).
 // mdi fallback for icons missing from devicon-plain: react, tailwindcss, github.
@@ -23,10 +23,10 @@ const iconMap: Record<string, string> = {
   css: 'devicon-plain:css3',
   linux: 'devicon-plain:linux',
   'rest apis': 'devicon-plain:swagger',
-};
+}
 
 export default function SkillIcon({ name }: { name: string }) {
-  const iconName = iconMap[name.toLowerCase()];
-  if (!iconName) return null;
-  return <Icon icon={iconName} className="w-4 h-4 shrink-0" />;
+  const iconName = iconMap[name.toLowerCase()]
+  if (!iconName) return null
+  return <Icon icon={iconName} className="h-4 w-4 shrink-0" />
 }

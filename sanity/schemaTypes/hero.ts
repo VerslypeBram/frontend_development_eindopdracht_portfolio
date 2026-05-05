@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity';
+import { defineType, defineField } from 'sanity'
 
 export default defineType({
   name: 'hero',
@@ -10,12 +10,15 @@ export default defineType({
       title: 'Tagline',
       type: 'string',
       description: 'Short label above the heading, e.g. "Software Developer".',
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'name',
       title: 'Name',
       type: 'string',
-      description: 'Your full name, displayed in the highlighted part of the heading.',
+      description:
+        'Your full name, displayed in the highlighted part of the heading.',
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'bio',
@@ -23,12 +26,13 @@ export default defineType({
       type: 'text',
       rows: 3,
       description: 'Short introductory paragraph shown below the heading.',
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'cloudinaryUrl',
-      title: 'Cloudinary Afbeeldings-URL (hoofdfoto)',
+      title: 'Cloudinary Image URL',
       type: 'url',
-      description: 'Plak hier de geoptimaliseerde Cloudinary URL in.',
+      description: 'Paste the optimised Cloudinary URL here.',
     }),
   ],
-});
+})

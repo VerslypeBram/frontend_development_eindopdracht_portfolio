@@ -1,8 +1,10 @@
-import type { NextConfig } from 'next';
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  cacheComponents: true,
+  allowedDevOrigins: ['localhost', '127.0.0.1', '192.168.237.1'],
   images: {
+    formats: ['image/avif', 'image/webp'],
+    qualities: [75, 80, 85],
     remotePatterns: [
       {
         protocol: 'https',
@@ -14,6 +16,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

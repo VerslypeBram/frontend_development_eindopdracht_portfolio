@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity';
+import { defineType, defineField } from 'sanity'
 
 export default defineType({
   name: 'aboutMe',
@@ -8,8 +8,10 @@ export default defineType({
     defineField({
       name: 'subHeading',
       title: 'Sub-Heading',
-      type: 'string',
-      description: 'Zin onder of in de tekst met evt. span (bijv. From the circuit board to the source code).',
+      type: 'array',
+      of: [{ type: 'block' }],
+      description:
+        'Zin onder of in de tekst met evt. span (bijv. From the circuit board to the source code).',
     }),
     defineField({
       name: 'paragraph1',
@@ -28,7 +30,8 @@ export default defineType({
       title: 'Foto-URLs voor waaier (About carousel)',
       type: 'array',
       of: [{ type: 'url' }],
-      description: "Foto's die in de carousel animatie rouleren in de Aboutsectie.",
+      description:
+        "Foto's die in de carousel animatie rouleren in de Aboutsectie.",
     }),
   ],
-});
+})

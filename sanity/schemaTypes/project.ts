@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity';
+import { defineType, defineField } from 'sanity'
 
 export default defineType({
   name: 'project',
@@ -7,26 +7,52 @@ export default defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Titel',
+      title: 'Title',
       type: 'string',
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: { source: 'title', maxLength: 96 },
+      description: 'Unique URL identifier for the detail page.',
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'description',
-      title: 'Korte Beschrijving',
+      title: 'Short Description',
       type: 'text',
     }),
     defineField({
+      name: 'longDescription',
+      title: 'Full Description',
+      type: 'array',
+      of: [{ type: 'block' }],
+      description: 'Full case study — problem, approach, result.',
+    }),
+    defineField({
       name: 'cloudinaryUrl',
-      title: 'Cloudinary Afbeeldings-URL',
+      title: 'Cloudinary Image URL',
       type: 'url',
-      description: 'Plak hier de geoptimaliseerde Cloudinary URL in',
+      description: 'Paste the optimised Cloudinary URL here.',
     }),
     defineField({
       name: 'tags',
-      title: 'Technologieën / Tags',
+      title: 'Technologies / Tags',
       type: 'array',
-      of: [{ type: 'string' }],
-      description: 'Bijv. TypeScript, React, Node.js',
+      of: [{ type: 'reference', to: [{ type: 'tag' }] }],
+      description: 'e.g. TypeScript, React, Node.js',
+    }),
+    defineField({
+      name: 'githubUrl',
+      title: 'GitHub URL',
+      type: 'url',
+    }),
+    defineField({
+      name: 'liveUrl',
+      title: 'Live URL',
+      type: 'url',
     }),
   ],
-});
+})

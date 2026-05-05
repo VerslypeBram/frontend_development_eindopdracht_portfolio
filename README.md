@@ -1,5 +1,9 @@
 # CMS-onderzoek: Next.js Portfolio
 
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-black?logo=vercel)](https://frontend-development-eindopdracht-portfolio.vercel.app)
+
+**Live site:** https://frontend-development-eindopdracht-portfolio.vercel.app
+
 Voor deze opdracht heb ik onderzocht welk CMS het best past bij mijn portfolio in Next.js.
 Daarna heb ik een kleine werkende PoC gebouwd met Sanity + Cloudinary.
 
@@ -96,16 +100,20 @@ npm install
 
 ### 3. Omgevingsvariabelen instellen
 
-Maak een bestand aan in de root genaamd `.env.local` en voeg de volgende variabelen toe. Je kunt de waarden vinden in je Sanity dashboard en Cloudinary console.
+Kopieer `.env.example` naar `.env.local` en vul de waarden in:
 
-```env
-# Sanity
-NEXT_PUBLIC_SANITY_PROJECT_ID=jouw_project_id
-NEXT_PUBLIC_SANITY_DATASET=production
-
-# Cloudinary
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=jouw_cloud_name
+```bash
+cp .env.example .env.local
 ```
+
+| Variabele                        | Waar vinden?                                     |
+| :------------------------------- | :----------------------------------------------- |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID`  | Sanity dashboard → Project settings              |
+| `NEXT_PUBLIC_SANITY_DATASET`     | Standaard `production`                           |
+| `NEXT_PUBLIC_SANITY_API_VERSION` | Datum van vandaag of `2026-04-10`                |
+| `SANITY_API_READ_TOKEN`          | Sanity dashboard → API → Tokens                  |
+| `SANITY_REVALIDATE_SECRET`       | Zelf te genereren (bijv. `openssl rand -hex 32`) |
+| `SANITY_PREVIEW_SECRET`          | Zelf te genereren (bijv. `openssl rand -hex 32`) |
 
 ### 4. Start de app
 
@@ -115,6 +123,13 @@ npm run dev
 
 - Portfolio: http://localhost:3000
 - Sanity Studio: http://localhost:3000/studio
+
+## Deployment (Vercel)
+
+1. Importeer de GitHub-repo in [vercel.com](https://vercel.com).
+2. Stel alle omgevingsvariabelen uit `.env.example` in via Vercel → Project → Settings → Environment Variables.
+3. Configureer een Sanity-webhook: Sanity dashboard → API → Webhooks → URL: `https://<jouw-domein>/api/revalidate`, methode `POST`, header `Authorization: Bearer <SANITY_REVALIDATE_SECRET>`.
+4. Voor draft/preview: stel de preview-URL in als `https://<jouw-domein>/api/draft?secret=<SANITY_PREVIEW_SECRET>&slug={slug}`.
 
 ## Screenshots (nog in te vullen)
 

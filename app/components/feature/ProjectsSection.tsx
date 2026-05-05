@@ -1,37 +1,46 @@
-import Image from 'next/image';
-import { cacheLife } from 'next/cache';
-import { client } from '@/sanity/lib/client';
-import ProjectsScroller from './ProjectsScroller';
-
-interface Project {
-  _id: string;
-  title: string;
-  description: string;
-  cloudinaryUrl?: string;
-  tags?: string[];
-}
+import { client } from '@/sanity/lib/client'
+import ProjectsScroller from './ProjectsScroller'
+import FadeIn from '@/app/components/common/FadeIn'
+import type { Project } from '@/app/types'
 
 async function getProjects(): Promise<Project[]> {
-  'use cache';
-  cacheLife('hours');
-  return client.fetch(`*[_type == "project"]{_id, title, description, cloudinaryUrl, tags}`);
+  try {
+    return await client.fetch(
+      `*[_type == "project"]{_id, "slug": slug.current, title, description, longDescription, cloudinaryUrl, "tags": tags[]->name, githubUrl, liveUrl}`,
+      {},
+      { next: { revalidate: 3600, tags: ['projects'] } },
+    )
+  } catch (error) {
+    console.error('Error fetching projects data:', error)
+    return []
+  }
 }
 
 export default async function ProjectsSection() {
-  const projects = await getProjects();
+  const projects = await getProjects()
 
-  if (!projects || projects.length === 0) return null;
+  if (projects.length === 0) return null
 
   return (
-    <section id="projects" className="w-full bg-neutral-100 dark:bg-neutral-900">
+    <section
+      id="projects"
+      className="w-full bg-neutral-100 dark:bg-neutral-900"
+    >
       <div className="py-24">
-        <div className="text-center mb-16 px-6">
-          <h3 className="text-sm font-semibold tracking-wider text-amber-600 dark:text-amber-500 uppercase mb-3">My Work</h3>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight">Projects</h2>
-        </div>
+        <FadeIn className="mb-16 px-6 text-center">
+          <h3
+            className="mb-3 text-sm font-semibold tracking-wider text-amber-600 uppercase dark:text-amber-500"
+            data-cursor-invert
+          >
+            My Work
+          </h3>
+          <h2 className="font-heading text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl dark:text-white">
+            Projects
+          </h2>
+        </FadeIn>
 
         <ProjectsScroller projects={projects} />
       </div>
     </section>
-  );
+  )
 }

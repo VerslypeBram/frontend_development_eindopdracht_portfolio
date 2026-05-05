@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity';
+import { defineType, defineField } from 'sanity'
 
 export default defineType({
   name: 'skills',
@@ -23,7 +23,8 @@ export default defineType({
               name: 'description',
               title: 'Description',
               type: 'string',
-              description: 'Short subtitle, e.g. "Building responsive, interactive UIs"',
+              description:
+                'Short subtitle, e.g. "Building responsive, interactive UIs"',
             }),
             defineField({
               name: 'skills',
@@ -40,4 +41,4 @@ export default defineType({
       ],
     }),
   ],
-});
+})

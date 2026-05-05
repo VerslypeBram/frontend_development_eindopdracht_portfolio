@@ -1,26 +1,29 @@
-'use client';
+'use client'
 
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react'
+
+export type CursorVariant = 'default' | 'hover' | 'text' | 'drag'
 
 type CursorContextType = {
-  isHovered: boolean;
-  setHovered: (v: boolean) => void;
-};
+  variant: CursorVariant
+  setVariant: (v: CursorVariant) => void
+}
 
 const CursorContext = createContext<CursorContextType>({
-  isHovered: false,
-  setHovered: () => {},
-});
+  variant: 'default',
+  setVariant: () => {},
+})
 
 export function CursorProvider({ children }: { children: React.ReactNode }) {
-  const [isHovered, setHovered] = useState(false);
+  const [variant, setVariant] = useState<CursorVariant>('default')
+
   return (
-    <CursorContext.Provider value={{ isHovered, setHovered }}>
+    <CursorContext.Provider value={{ variant, setVariant }}>
       {children}
     </CursorContext.Provider>
-  );
+  )
 }
 
 export function useCursorContext() {
-  return useContext(CursorContext);
+  return useContext(CursorContext)
 }

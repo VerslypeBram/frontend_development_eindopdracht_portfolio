@@ -1,56 +1,72 @@
-import { cacheLife } from 'next/cache';
-import { client } from '@/sanity/lib/client';
-import SkillIcon from '@/app/components/common/SkillIcon';
-
-interface SkillCategory {
-  name: string;
-  description?: string;
-  skills: string[];
-}
-
-interface SkillsData {
-  skillCategories: SkillCategory[];
-}
+import { client } from '@/sanity/lib/client'
+import SkillIcon from '@/app/components/common/SkillIcon'
+import FadeIn from '@/app/components/common/FadeIn'
+import type { SkillsData } from '@/app/types'
 
 async function getSkills(): Promise<SkillsData | null> {
-  'use cache';
-  cacheLife('hours');
-  return client.fetch(`*[_type == "skills"][0]{skillCategories}`);
+  try {
+    return await client.fetch(
+      `*[_type == "skills"][0]{skillCategories}`,
+      {},
+      { next: { revalidate: 3600, tags: ['skills'] } },
+    )
+  } catch (error) {
+    console.error('Error fetching skills data:', error)
+    return null
+  }
 }
 
 export default async function SkillsSection() {
-  const data = await getSkills();
+  const data = await getSkills()
 
-  if (!data) return null;
+  if (!data) return null
 
   return (
-    <section id="skills" className="w-full bg-background">
-      <div className="py-24 max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h3 className="text-sm font-semibold tracking-wider text-amber-600 dark:text-amber-500 uppercase mb-3">EXPERTISE</h3>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight">Skills & Technologies</h2>
-        </div>
+    <section id="skills" className="bg-background w-full">
+      <div className="mx-auto max-w-6xl px-6 py-24">
+        <FadeIn className="mb-16 text-center">
+          <h3
+            className="mb-3 text-sm font-semibold tracking-wider text-amber-600 uppercase dark:text-amber-500"
+            data-cursor-invert
+          >
+            EXPERTISE
+          </h3>
+          <h2 className="font-heading text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl dark:text-white">
+            Skills & Technologies
+          </h2>
+        </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {data.skillCategories?.map((category) => (
-            <div key={category.name} className="rounded-2xl border border-neutral-200 dark:border-white/10 bg-white dark:bg-white/5 p-6 shadow-sm transition-transform duration-300 hover:-translate-y-2 hover:border-amber-500 dark:hover:border-amber-500">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0" />
-                <h3 className="font-heading text-lg font-bold text-neutral-900 dark:text-white">{category.name}</h3>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {data.skillCategories?.map((category, index) => (
+            <FadeIn key={category.name} delay={index * 0.1} amount={0.1}>
+              <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-transform duration-300 hover:-translate-y-2 hover:border-amber-500 dark:border-white/10 dark:bg-white/5 dark:hover:border-amber-500">
+                <div className="mb-2 flex items-center gap-2">
+                  <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-amber-500" />
+                  <h3 className="font-heading text-lg font-bold text-neutral-900 dark:text-white">
+                    {category.name}
+                  </h3>
+                </div>
+                {category.description && (
+                  <p className="mb-5 text-sm text-neutral-600 dark:text-neutral-300">
+                    {category.description}
+                  </p>
+                )}
+                <div className="grid grid-cols-2 gap-2">
+                  {category.skills?.map(skill => (
+                    <span
+                      key={skill}
+                      className="flex cursor-default items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-100 px-3 py-1.5 text-sm font-medium text-neutral-700 transition-all duration-200 hover:scale-[1.04] hover:border-amber-400 dark:border-white/10 dark:bg-white/10 dark:text-neutral-200 dark:hover:border-amber-500"
+                    >
+                      <SkillIcon name={skill} />
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-              {category.description && <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-5">{category.description}</p>}
-              <div className="grid grid-cols-2 gap-2">
-                {category.skills?.map((skill) => (
-                  <span key={skill} className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium bg-neutral-100 dark:bg-white/10 text-neutral-700 dark:text-neutral-200 border border-neutral-200 dark:border-white/10 transition-all duration-200 cursor-default hover:scale-[1.04] hover:border-amber-400 dark:hover:border-amber-500">
-                    <SkillIcon name={skill} />
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
+            </FadeIn>
           ))}
         </div>
       </div>
     </section>
-  );
+  )
 }
