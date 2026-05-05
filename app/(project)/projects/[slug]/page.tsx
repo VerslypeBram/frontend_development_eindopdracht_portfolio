@@ -135,9 +135,9 @@ export default async function ProjectPage({
             {/* Tags */}
             {project.tags && project.tags.length > 0 && (
               <div>
-                <h2 className="font-heading mb-4 text-sm font-semibold tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
+                <h3 className="font-heading mb-4 text-sm font-semibold tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
                   Technologies
-                </h2>
+                </h3>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map(tag => (
                     <span
@@ -154,9 +154,9 @@ export default async function ProjectPage({
             {/* Links */}
             {(project.liveUrl || project.githubUrl) && (
               <div>
-                <h2 className="font-heading mb-4 text-sm font-semibold tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
+                <h3 className="font-heading mb-4 text-sm font-semibold tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
                   Links
-                </h2>
+                </h3>
                 <div className="flex flex-col gap-3">
                   {project.liveUrl && (
                     <a

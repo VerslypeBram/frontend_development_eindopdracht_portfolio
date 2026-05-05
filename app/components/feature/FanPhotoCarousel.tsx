@@ -65,7 +65,7 @@ export default function FanPhotoCarousel({
                 sizes="(max-width: 480px) 256px, (max-width: 768px) 288px, 320px"
                 quality={80}
                 className="object-cover"
-                priority={position === 0}
+                priority={i === 0}
               />
             </motion.div>
           )
