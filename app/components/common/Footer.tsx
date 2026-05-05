@@ -9,15 +9,22 @@ const FOOTER_LINKS = [
   { name: 'Contact', href: '#contact' },
 ]
 
-const SOCIAL_LINKS = [
+const DEFAULT_SOCIAL_LINKS = [
   {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/bram-verslype-b27460408/',
+    platform: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/bram-verslype-b27460408/',
   },
-  { name: 'GitHub', href: 'https://github.com/VerslypeBram' },
+  { platform: 'GitHub', url: 'https://github.com/VerslypeBram' },
 ]
 
-export default function Footer() {
+interface FooterProps {
+  socialLinks?: { platform: string; url: string; icon?: string }[]
+  footerText?: string
+}
+
+export default function Footer({ socialLinks, footerText }: FooterProps) {
+  const socials = socialLinks?.length ? socialLinks : DEFAULT_SOCIAL_LINKS
+
   return (
     <footer className="bg-background dark:bg-background-dark w-full pt-12 pb-0 transition-colors">
       <div className="mx-auto max-w-6xl px-6">
@@ -32,8 +39,8 @@ export default function Footer() {
                 Bram Verslype
               </Link>
               <p className="max-w-xs text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
-                Design-minded developer focused on building beautiful,
-                interactive digital experiences.
+                {footerText ||
+                  'Design-minded developer focused on building beautiful, interactive digital experiences.'}
               </p>
             </div>
 
@@ -43,7 +50,12 @@ export default function Footer() {
                 Navigation
               </h4>
               <ul className="flex flex-col gap-2">
-                {FOOTER_LINKS.map(link => (
+                {[
+                  { name: 'About Me', href: '#about' },
+                  { name: 'Expertise', href: '#skills' },
+                  { name: 'My Work', href: '#projects' },
+                  { name: 'Contact', href: '#contact' },
+                ].map(link => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
@@ -62,15 +74,15 @@ export default function Footer() {
                 Connect
               </h4>
               <ul className="flex flex-col gap-2">
-                {SOCIAL_LINKS.map(link => (
-                  <li key={link.name}>
+                {socials.map(link => (
+                  <li key={link.platform}>
                     <a
-                      href={link.href}
+                      href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sm text-neutral-600 decoration-amber-500 underline-offset-4 transition-colors hover:text-neutral-900 hover:underline hover:decoration-2 dark:text-neutral-300 dark:hover:text-white"
                     >
-                      {link.name}
+                      {link.platform}
                     </a>
                   </li>
                 ))}

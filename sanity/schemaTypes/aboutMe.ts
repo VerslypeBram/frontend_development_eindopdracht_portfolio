@@ -27,11 +27,18 @@ export default defineType({
     }),
     defineField({
       name: 'cloudinaryUrls',
-      title: 'Foto-URLs voor waaier (About carousel)',
+      title: 'About Photos',
       type: 'array',
-      of: [{ type: 'url' }],
-      description:
-        "Foto's die in de carousel animatie rouleren in de Aboutsectie.",
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'url', type: 'url', title: 'Cloudinary URL' },
+            { name: 'alt', type: 'string', title: 'Alt Text' },
+          ],
+        },
+      ],
+      description: 'Photos that rotate in the About section carousel.',
     }),
   ],
 })

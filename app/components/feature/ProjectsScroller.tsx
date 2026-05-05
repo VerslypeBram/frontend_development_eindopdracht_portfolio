@@ -32,7 +32,7 @@ function ProjectCard({
         <div className="relative h-52 w-full">
           <Image
             src={project.cloudinaryUrl}
-            alt={`Afbeelding van ${project.title}`}
+            alt={project.imageAlt || `Photo of ${project.title}`}
             fill
             sizes="384px"
             quality={80}
@@ -67,7 +67,7 @@ function ProjectCard({
 
         {project.slug && (
           <span className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-amber-600 dark:text-amber-500">
-            Bekijk project
+            View project
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
@@ -127,9 +127,6 @@ export default function ProjectsScroller({ projects }: Props) {
     const container = scrollRef.current
     if (!container) return
 
-    // Haal de zichtbare breedte van de container op.
-    // We scrollen de breedte van het scherm, minus een kleine marge,
-    // zodat de gebruiker snapt dat er een 'vorige' kaart was.
     const scrollAmount = container.clientWidth * 0.8
 
     container.scrollBy({

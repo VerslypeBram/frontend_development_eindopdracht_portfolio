@@ -7,9 +7,9 @@ import { useRef, useCallback, useState, useEffect } from 'react'
 import Button from '@/app/components/common/Button'
 import type { HeroData } from '@/app/types'
 
-// --- Animatie-varianten ---
+// --- Animation Variants ---
 
-/** Container die de stagger op de tekst-kinderen coördineert */
+/** Container that coordinates the stagger on the text children */
 const textContainer = {
   hidden: { opacity: 0 },
   show: {
@@ -21,7 +21,7 @@ const textContainer = {
   },
 }
 
-/** Elk tekst-item schuift zacht omhoog */
+/** Each text item slides softly upwards */
 const textItem = {
   hidden: { opacity: 0, y: 24 },
   show: {
@@ -31,7 +31,7 @@ const textItem = {
   },
 }
 
-/** De profielfoto verschijnt als laatste, iets trager */
+/** The profile photo appears last, slightly slower */
 const imageVariant = {
   hidden: { opacity: 0, scale: 0.96, y: 16 },
   show: {
@@ -126,7 +126,7 @@ export default function HeroSectionClient({
       className="relative min-h-screen w-full overflow-hidden"
     >
       <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center gap-16 px-6 md:flex-row">
-        {/* Tekst-kolom: stagger over de kinderen */}
+        {/* Text column: stagger over children */}
         <motion.div
           className="flex flex-1 flex-col items-start gap-6"
           variants={textContainer}
@@ -181,7 +181,7 @@ export default function HeroSectionClient({
           </motion.div>
         </motion.div>
 
-        {/* Profielfoto: volgt als laatste */}
+        {/* Profile photo: follows last */}
         {hero.cloudinaryUrl && (
           <motion.div
             className="relative h-80 w-72 shrink-0 overflow-hidden rounded-2xl shadow-xl md:h-96 md:w-80"
@@ -192,7 +192,7 @@ export default function HeroSectionClient({
           >
             <Image
               src={hero.cloudinaryUrl}
-              alt={`Photo of ${hero.name}`}
+              alt={hero.imageAlt || `Photo of ${hero.name}`}
               fill
               sizes="(max-width: 768px) 288px, 320px"
               quality={80}

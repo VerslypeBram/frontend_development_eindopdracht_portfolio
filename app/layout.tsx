@@ -9,16 +9,16 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: 'Bram Verslype | Portfolio',
+  title: 'Bram Verslype',
   description:
-    'Welkom op het portfolio van Bram Verslype, een gepassioneerde Next.js Web Developer. Ontdek mijn nieuwste projecten, vaardigheden en creatieve weboplossingen.',
+    'Welcome to the portfolio of Bram Verslype, a passionate Next.js Web Developer. Discover my latest projects, skills, and creative web solutions.',
   openGraph: {
-    title: 'Bram Verslype | Portfolio',
+    title: 'Bram Verslype',
     description:
-      'Welkom op het portfolio van Bram Verslype, een gepassioneerde Next.js Web Developer. Ontdek mijn nieuwste projecten, vaardigheden en creatieve weboplossingen.',
+      'Welcome to the portfolio of Bram Verslype, a passionate Next.js Web Developer. Discover my latest projects, skills, and creative web solutions.',
     url: 'https://bramverslype.be',
     siteName: 'Bram Verslype Portfolio',
-    locale: 'nl_BE',
+    locale: 'en_US',
     type: 'website',
   },
 }
@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="nl"
+      lang="en"
       suppressHydrationWarning
       className="scroll-smooth"
       data-scroll-behavior="smooth"
@@ -41,6 +41,8 @@ export default function RootLayout({
           href="https://api.fontshare.com"
           crossOrigin="anonymous"
         />
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://cdn.sanity.io" />
         <link
           rel="stylesheet"
           href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&display=swap"
@@ -50,7 +52,7 @@ export default function RootLayout({
         className={`${spaceGrotesk.variable} flex min-h-full flex-col font-sans antialiased`}
       >
         <a href="#main" className="sr-only focus:not-sr-only">
-          Skip naar content
+          Skip to content
         </a>
         {children}
       </body>

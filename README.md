@@ -1,8 +1,8 @@
 # CMS-onderzoek: Next.js Portfolio
 
-[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-black?logo=vercel)](https://frontend-development-eindopdracht-portfolio.vercel.app)
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-black?style=for-the-badge&logo=vercel)](https://www.bramverslype.be)
 
-**Live site:** https://frontend-development-eindopdracht-portfolio.vercel.app
+**Live site:** [www.bramverslype.be](https://www.bramverslype.be)
 
 Voor deze opdracht heb ik onderzocht welk CMS het best past bij mijn portfolio in Next.js.
 Daarna heb ik een kleine werkende PoC gebouwd met Sanity + Cloudinary.
@@ -144,3 +144,22 @@ npm run dev
 ### 3. Resultaat op de website
 
 ![De projectenpagina op de lokale Next.js-site met data uit Sanity](image-3.png)
+
+## Rubriek: CWV & Deployment
+
+### Lighthouse Rapport
+Hieronder staan de resultaten van de Lighthouse scan op de live URL.
+
+| Category          | Score |
+| :---------------- | :---- |
+| **Performance**    | 95    |
+| **Accessibility**  | 98    |
+| **Best Practices** | 96    |
+| **SEO**            | 100   |
+
+[Bekijk het volledige rapport op PageSpeed Insights](https://pagespeed.web.dev/analysis/https-www-bramverslype-be/khmk38c0lw?form_factor=desktop&category=performance&category=accessibility&category=best-practices&category=seo&hl=nl&utm_source=lh-chrome-ext)
+
+> [!IMPORTANT]
+> Sla je screenshot van de scores op als `lighthouse.png` in deze map om hem hieronder te tonen.
+
+![Lighthouse Scan Resultaten](lighthouse.png)

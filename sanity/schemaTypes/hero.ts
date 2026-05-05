@@ -34,5 +34,12 @@ export default defineType({
       type: 'url',
       description: 'Paste the optimised Cloudinary URL here.',
     }),
+    defineField({
+      name: 'imageAlt',
+      title: 'Image Alt Text',
+      type: 'string',
+      description:
+        'Descriptive text for the profile photo (important for SEO).',
+    }),
   ],
 })

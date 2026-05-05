@@ -6,7 +6,7 @@ import type { Project } from '@/app/types'
 async function getProjects(): Promise<Project[]> {
   try {
     return await client.fetch(
-      `*[_type == "project"]{_id, "slug": slug.current, title, description, longDescription, cloudinaryUrl, "tags": tags[]->name, githubUrl, liveUrl}`,
+      `*[_type == "project"]{_id, "slug": slug.current, title, description, longDescription, cloudinaryUrl, imageAlt, "tags": tags[]->name, githubUrl, liveUrl}`,
       {},
       { next: { revalidate: 3600, tags: ['projects'] } },
     )

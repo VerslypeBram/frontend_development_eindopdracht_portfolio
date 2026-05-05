@@ -10,5 +10,5 @@ export function cloudinaryBlurUrl(
   if (!url.startsWith(cloudinaryBase)) return undefined
 
   // Insert transformation after /upload/ to get a tiny blurred thumbnail
-  return url.replace('/upload/', '/upload/w_16,q_30,e_blur:200/')
+  return url.replace('/upload/', '/upload/w_16,q_10,f_auto,e_blur:200/')
 }

@@ -16,10 +16,9 @@ export default function Error({
 
   return (
     <div className="flex min-h-[50vh] flex-col items-center justify-center gap-4 px-4 text-center">
-      <h2 className="text-2xl font-bold">Oeps, er is iets misgegaan!</h2>
+      <h2 className="text-2xl font-bold">Oops, something went wrong!</h2>
       <p className="max-w-md text-gray-500">
-        We konden de gegevens niet ophalen. Probeer het opnieuw of kom later
-        terug.
+        We couldn&apos;t fetch the data. Please try again or come back later.
       </p>
       <button
         onClick={
@@ -28,7 +27,7 @@ export default function Error({
         }
         className="mt-4 rounded-md bg-amber-600 px-6 py-2 text-white transition-colors hover:bg-amber-500 focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:outline-none"
       >
-        Probeer opnieuw
+        Try again
       </button>
     </div>
   )

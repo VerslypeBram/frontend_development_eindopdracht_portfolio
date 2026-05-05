@@ -7,6 +7,7 @@ export interface Project {
   description: string
   longDescription?: PortableTextBlock[]
   cloudinaryUrl?: string
+  imageAlt?: string
   tags?: string[]
   githubUrl?: string
   liveUrl?: string
@@ -17,7 +18,7 @@ export interface AboutMeData {
   subHeading: PortableTextBlock[]
   paragraph1: string
   paragraph2: string
-  cloudinaryUrls?: string[]
+  cloudinaryUrls?: { url: string; alt?: string }[]
 }
 
 export interface HeroData {
@@ -25,6 +26,7 @@ export interface HeroData {
   name: string
   bio: string
   cloudinaryUrl: string
+  imageAlt?: string
 }
 
 export interface SkillCategory {

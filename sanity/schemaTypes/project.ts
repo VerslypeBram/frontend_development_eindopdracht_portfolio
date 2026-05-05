@@ -38,6 +38,13 @@ export default defineType({
       description: 'Paste the optimised Cloudinary URL here.',
     }),
     defineField({
+      name: 'imageAlt',
+      title: 'Image Alt Text',
+      type: 'string',
+      description:
+        'Descriptive text for the project image (important for SEO).',
+    }),
+    defineField({
       name: 'tags',
       title: 'Technologies / Tags',
       type: 'array',

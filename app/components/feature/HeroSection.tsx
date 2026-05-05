@@ -6,7 +6,7 @@ import type { HeroData } from '@/app/types'
 async function getHero(): Promise<HeroData | null> {
   try {
     return await client.fetch(
-      `*[_type == "hero"][0]{tagline, name, bio, cloudinaryUrl}`,
+      `*[_type == "hero"][0]{tagline, name, bio, cloudinaryUrl, imageAlt}`,
       {},
       { next: { revalidate: 3600, tags: ['hero'] } },
     )

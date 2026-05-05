@@ -6,18 +6,21 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useCursorContext } from './CursorContext'
 
-const NAV_LINKS = [
-  { id: 'about', label: 'About Me' },
-  { id: 'skills', label: 'Expertise' },
-  { id: 'projects', label: 'My Work' },
-  { id: 'contact', label: 'Contact' },
-] as const
+const DEFAULT_NAV_LINKS = [
+  { href: '#about', label: 'About Me' },
+  { href: '#skills', label: 'Expertise' },
+  { href: '#projects', label: 'My Work' },
+  { href: '#contact', label: 'Contact' },
+]
 
-type SectionId = (typeof NAV_LINKS)[number]['id'] | null
+interface NavBarProps {
+  navLinks?: { label: string; href: string }[]
+}
 
-export default function NavBar() {
+export default function NavBar({ navLinks }: NavBarProps) {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [activeSection, setActiveSection] = useState<SectionId>(null)
+  const links = navLinks?.length ? navLinks : DEFAULT_NAV_LINKS
+  const [activeSection, setActiveSection] = useState<string | null>(null)
   const { setVariant } = useCursorContext()
 
   useEffect(() => {
@@ -26,11 +29,14 @@ export default function NavBar() {
       setIsScrolled(scrollY > 10)
 
       const offset = scrollY + 120 // account for sticky navbar height + buffer
-      let current: SectionId = null
-      for (const { id } of NAV_LINKS) {
-        const el = document.getElementById(id)
-        if (el && el.offsetTop <= offset) {
-          current = id
+      let current: string | null = null
+      for (const link of links) {
+        if (link.href.startsWith('#')) {
+          const id = link.href.substring(1)
+          const el = document.getElementById(id)
+          if (el && el.offsetTop <= offset) {
+            current = id
+          }
         }
       }
       setActiveSection(current)
@@ -39,7 +45,7 @@ export default function NavBar() {
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [links])
 
   return (
     <header
@@ -61,12 +67,13 @@ export default function NavBar() {
         <div className="flex items-center gap-8">
           <nav>
             <ul className="flex items-center gap-6 text-base font-medium">
-              {NAV_LINKS.map(({ id, label }) => {
-                const isActive = activeSection === id
+              {links.map(({ href, label }) => {
+                const id = href.startsWith('#') ? href.substring(1) : null
+                const isActive = id ? activeSection === id : false
                 return (
-                  <li key={id} className="relative pb-1">
+                  <li key={href} className="relative pb-1">
                     <Link
-                      href={`#${id}`}
+                      href={href}
                       className={`transition-colors ${isActive ? 'text-neutral-900 dark:text-white' : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white'}`}
                       onMouseEnter={() => setVariant('hover')}
                       onMouseLeave={() => setVariant('default')}

@@ -6,7 +6,7 @@ import type { AboutMeData } from '@/app/types'
 async function getAboutMe(): Promise<AboutMeData | null> {
   try {
     return await client.fetch(
-      `*[_type == "aboutMe"][0]{subHeading, paragraph1, paragraph2, cloudinaryUrls}`,
+      `*[_type == "aboutMe"][0]{subHeading, paragraph1, paragraph2, cloudinaryUrls[]{url, alt}}`,
       {},
       { next: { revalidate: 3600, tags: ['aboutMe'] } },
     )
@@ -44,8 +44,8 @@ export default async function AboutMe() {
           >
             {data.cloudinaryUrls && data.cloudinaryUrls.length > 0 && (
               <FanPhotoCarousel
-                photos={data.cloudinaryUrls.filter(Boolean)}
-                name={data.name ?? 'Portfolio owner'}
+                photos={data.cloudinaryUrls.filter(p => p && p.url)}
+                name={data.name ?? 'Bram Verslype'}
               />
             )}
           </FadeIn>

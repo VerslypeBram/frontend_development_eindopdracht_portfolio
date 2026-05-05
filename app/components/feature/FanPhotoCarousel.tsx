@@ -13,7 +13,7 @@ const STACK_STYLES: { rotation: number; scale: number; opacity: number }[] = [
 ]
 
 interface FanPhotoCarouselProps {
-  photos: string[]
+  photos: { url: string; alt?: string }[]
   name: string
 }
 
@@ -36,7 +36,7 @@ export default function FanPhotoCarousel({
   return (
     <div className="shrink-0">
       <div className="relative h-80 w-72 md:h-96 md:w-80">
-        {photos.map((url, i) => {
+        {photos.map((photo, i) => {
           // How many steps behind the active card is this card?
           const position = (i - activeIndex + photos.length) % photos.length
           const style =
@@ -59,8 +59,8 @@ export default function FanPhotoCarousel({
               style={{ zIndex: photos.length - position }}
             >
               <Image
-                src={url}
-                alt={`Photo of ${name}`}
+                src={photo.url}
+                alt={photo.alt || `Photo of ${name}`}
                 fill
                 sizes="(max-width: 768px) 288px, 320px"
                 quality={80}
@@ -74,9 +74,9 @@ export default function FanPhotoCarousel({
       {/* Dot indicators */}
       {photos.length > 1 && (
         <div className="mt-4 flex justify-center gap-2">
-          {photos.map((url, i) => (
+          {photos.map((photo, i) => (
             <button
-              key={url}
+              key={photo.url}
               onClick={() => setActiveIndex(i)}
               aria-label={`Foto ${i + 1}`}
               className={`h-2 w-2 rounded-full transition-all duration-300 ${i === activeIndex ? 'w-4 bg-amber-500' : 'bg-neutral-300 hover:bg-amber-400 dark:bg-neutral-600'}`}
