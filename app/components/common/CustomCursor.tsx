@@ -51,6 +51,11 @@ export default function CustomCursor() {
   const y = useMotionValue(-200)
 
   useEffect(() => {
+    // Don't attach mouse listeners on touch devices
+    if (typeof window === 'undefined') return
+    const hasFinePointer = window.matchMedia('(pointer: fine)').matches
+    if (!hasFinePointer) return
+
     const move = (e: MouseEvent) => {
       x.set(e.clientX)
       y.set(e.clientY)
@@ -95,7 +100,7 @@ export default function CustomCursor() {
     <>
       {/* Ring — instant position, spring only on size/opacity changes */}
       <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-[9999] rounded-full"
+        className="custom-cursor-element pointer-events-none fixed top-0 left-0 z-[9999] rounded-full"
         style={{
           x,
           y,
@@ -113,7 +118,7 @@ export default function CustomCursor() {
       />
       {/* Dot — instant, no lag */}
       <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-[9999] rounded-full bg-amber-400"
+        className="custom-cursor-element pointer-events-none fixed top-0 left-0 z-[9999] rounded-full bg-amber-400"
         style={{
           x,
           y,

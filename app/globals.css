@@ -54,8 +54,17 @@ body::before {
   opacity: 0.025;
 }
 
-/* Hide native cursor on non-touch devices — exclude Sanity Studio */
+/* Hide custom cursor on touch devices (default hidden) */
+.custom-cursor-element {
+  display: none !important;
+}
+
+/* Show custom cursor only on devices with fine pointer (mouse) */
 @media (pointer: fine) {
+  .custom-cursor-element {
+    display: block !important;
+  }
+
   body:not(.sanity-studio) *,
   body:not(.sanity-studio) *::before,
   body:not(.sanity-studio) *::after {
