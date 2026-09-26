@@ -40,8 +40,9 @@ export async function generateMetadata({
   const project = await getProject(slug)
   if (!project) return { title: 'Project not found' }
   return {
-    title: `${project.title} — Portfolio`,
+    title: project.title,
     description: project.description,
+    alternates: { canonical: `/projects/${slug}` },
     openGraph: {
       title: project.title,
       description: project.description,
