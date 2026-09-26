@@ -31,7 +31,7 @@ export default async function Home() {
         <ProjectsSection />
       </Suspense>
 
-      {/* ContactSection fetches no data — no Suspense needed */}
+      {/* Reuses the cached site settings fetched by the layout */}
       <ContactSection />
     </div>
   )

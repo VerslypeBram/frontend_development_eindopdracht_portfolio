@@ -2,18 +2,13 @@
 
 import Link from 'next/link'
 import ThemeToggle from './ThemeToggle'
+import { DEFAULT_NAV_LINKS } from '@/app/lib/constants'
+import type { NavLink } from '@/app/lib/settings'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const DEFAULT_NAV_LINKS = [
-  { href: '#about', label: 'About Me' },
-  { href: '#skills', label: 'Expertise' },
-  { href: '#projects', label: 'My Work' },
-  { href: '#contact', label: 'Contact' },
-]
-
 interface NavBarProps {
-  navLinks?: { label: string; href: string }[]
+  navLinks?: NavLink[]
 }
 
 export default function NavBar({ navLinks }: NavBarProps) {

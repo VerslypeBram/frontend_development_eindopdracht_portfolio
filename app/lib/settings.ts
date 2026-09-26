@@ -1,9 +1,23 @@
 import { sanityFetch } from '@/sanity/lib/live'
 
+export interface NavLink {
+  label: string
+  href: string
+}
+
+export interface SocialLink {
+  platform: string
+  url: string
+  /** Iconify name, e.g. "mdi:github" */
+  icon?: string
+  /** Visible handle, e.g. "@VerslypeBram" */
+  handle?: string
+}
+
 export interface SiteSettings {
   title: string
-  navLinks: { label: string; href: string }[]
-  socialLinks: { platform: string; url: string; icon: string }[]
+  navLinks?: NavLink[]
+  socialLinks?: SocialLink[]
   footerText?: string
 }
 

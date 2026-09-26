@@ -7,7 +7,9 @@ import SectionHeading from '@/app/components/common/SectionHeading'
 async function getProjects(): Promise<Project[]> {
   try {
     const { data } = await sanityFetch({
-      query: `*[_type == "project"]{_id, "slug": slug.current, title, description, longDescription, cloudinaryUrl, imageAlt, "tags": tags[]->name, githubUrl, liveUrl}`,
+      // No longDescription here: it is only needed on the detail page and would
+      // otherwise be serialized into the client-side ProjectsScroller props.
+      query: `*[_type == "project"] | order(coalesce(order, 999) asc, _createdAt desc){_id, "slug": slug.current, title, description, cloudinaryUrl, imageAlt, "tags": tags[]->name, githubUrl, liveUrl}`,
       tags: ['projects'],
     })
     return (data as Project[]) ?? []
