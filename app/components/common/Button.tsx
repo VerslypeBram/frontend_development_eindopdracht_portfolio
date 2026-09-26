@@ -1,7 +1,4 @@
-'use client'
-
 import Link from 'next/link'
-import { useCursorContext } from './CursorContext'
 
 type BaseProps = {
   variant?: 'primary' | 'outline'
@@ -40,33 +37,18 @@ export default function Button({
   onClick,
   type = 'button',
 }: ButtonProps) {
-  const { setVariant } = useCursorContext()
   const classes = `${base} ${variantClasses[variant]} ${className}`
-
-  const enter = () => setVariant('hover')
-  const leave = () => setVariant('default')
 
   if (href) {
     return (
-      <Link
-        href={href}
-        className={classes}
-        onMouseEnter={enter}
-        onMouseLeave={leave}
-      >
+      <Link href={href} className={classes}>
         {children}
       </Link>
     )
   }
 
   return (
-    <button
-      type={type}
-      onClick={onClick}
-      className={classes}
-      onMouseEnter={enter}
-      onMouseLeave={leave}
-    >
+    <button type={type} onClick={onClick} className={classes}>
       {children}
     </button>
   )

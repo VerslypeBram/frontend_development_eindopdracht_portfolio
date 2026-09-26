@@ -1,8 +1,5 @@
 import { ImageResponse } from 'next/og'
 
-// Route segment config
-export const runtime = 'edge'
-
 // Image metadata
 export const size = {
   width: 180,
@@ -11,7 +8,7 @@ export const size = {
 export const contentType = 'image/png'
 
 // Image generation
-export default function Icon() {
+export default function AppleIcon() {
   return new ImageResponse(
     // ImageResponse JSX element
     <div

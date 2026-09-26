@@ -4,7 +4,6 @@ import Link from 'next/link'
 import ThemeToggle from './ThemeToggle'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useCursorContext } from './CursorContext'
 
 const DEFAULT_NAV_LINKS = [
   { href: '#about', label: 'About Me' },
@@ -22,7 +21,6 @@ export default function NavBar({ navLinks }: NavBarProps) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const links = navLinks?.length ? navLinks : DEFAULT_NAV_LINKS
   const [activeSection, setActiveSection] = useState<string | null>(null)
-  const { setVariant } = useCursorContext()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,8 +65,6 @@ export default function NavBar({ navLinks }: NavBarProps) {
           href="/"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="font-heading text-xl font-bold tracking-tight text-neutral-900 md:text-2xl dark:text-white"
-          onMouseEnter={() => setVariant('hover')}
-          onMouseLeave={() => setVariant('default')}
         >
           Bram Verslype
         </Link>
@@ -85,8 +81,6 @@ export default function NavBar({ navLinks }: NavBarProps) {
                     <Link
                       href={href}
                       className={`transition-colors ${isActive ? 'text-neutral-900 dark:text-white' : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white'}`}
-                      onMouseEnter={() => setVariant('hover')}
-                      onMouseLeave={() => setVariant('default')}
                     >
                       {label}
                     </Link>

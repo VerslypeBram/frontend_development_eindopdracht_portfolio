@@ -19,7 +19,7 @@ export default function Footer({ socialLinks, footerText }: FooterProps) {
   const socials = socialLinks?.length ? socialLinks : DEFAULT_SOCIAL_LINKS
 
   return (
-    <footer className="bg-background dark:bg-background-dark w-full pt-12 pb-0 transition-colors">
+    <footer className="bg-background w-full pt-12 pb-0 transition-colors">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <FadeIn>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8">

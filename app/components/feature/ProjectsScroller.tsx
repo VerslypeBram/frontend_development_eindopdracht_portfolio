@@ -24,8 +24,6 @@ function ProjectCard({
   index: number
   isInView: boolean
 }) {
-  const cardRef = useRef<HTMLDivElement>(null)
-
   const inner = (
     <>
       {project.cloudinaryUrl && (
@@ -88,14 +86,12 @@ function ProjectCard({
 
   return (
     <motion.div
-      ref={cardRef}
       custom={index}
       variants={cardVariants}
       initial="hidden"
       animate={isInView ? 'show' : 'hidden'}
       whileHover={{ y: -8 }}
       className="group/card flex w-[min(calc(100vw-2rem),20rem)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-[border-color] duration-300 hover:border-amber-500 md:w-96 dark:border-white/10 dark:bg-white/5 dark:hover:border-amber-500"
-      data-cursor-invert
     >
       {project.slug ? (
         <Link
