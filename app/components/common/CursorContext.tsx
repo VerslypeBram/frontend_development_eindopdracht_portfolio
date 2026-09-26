@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState } from 'react'
 
-export type CursorVariant = 'default' | 'hover' | 'text' | 'drag'
+export type CursorVariant = 'default' | 'hover'
 
 type CursorContextType = {
   variant: CursorVariant

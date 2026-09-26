@@ -16,9 +16,7 @@
     "@iconify-json/simple-icons": "^1.2.97",
     "@iconify/utils": "^3.1.7",
     "@portabletext/react": "^6.0.3",
-    "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^5.20.0",
-    "clsx": "^2.1.1",
     "framer-motion": "^12.43.0",
     "lucide-react": "^1.8.0",
     "next": "^16.3.6",
@@ -27,7 +25,6 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "sanity": "^5.20.0",
-    "tailwind-merge": "^3.5.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {

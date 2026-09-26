@@ -31,6 +31,7 @@ export default async function SiteLayout({
         {children}
       </main>
       <Footer
+        navLinks={settings?.navLinks}
         socialLinks={settings?.socialLinks}
         footerText={settings?.footerText}
       />

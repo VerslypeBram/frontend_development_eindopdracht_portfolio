@@ -2,11 +2,14 @@ import { sanityFetch } from '@/sanity/lib/live'
 import ProjectsScroller from './ProjectsScroller'
 import FadeIn from '@/app/components/common/FadeIn'
 import type { Project } from '@/app/types'
+import SectionHeading from '@/app/components/common/SectionHeading'
 
 async function getProjects(): Promise<Project[]> {
   try {
     const { data } = await sanityFetch({
-      query: `*[_type == "project"]{_id, "slug": slug.current, title, description, longDescription, cloudinaryUrl, imageAlt, "tags": tags[]->name, githubUrl, liveUrl}`,
+      // No longDescription here: it is only needed on the detail page and would
+      // otherwise be serialized into the client-side ProjectsScroller props.
+      query: `*[_type == "project"] | order(coalesce(order, 999) asc, _createdAt desc){_id, "slug": slug.current, title, description, cloudinaryUrl, imageAlt, "tags": tags[]->name, githubUrl, liveUrl}`,
       tags: ['projects'],
     })
     return (data as Project[]) ?? []
@@ -28,12 +31,7 @@ export default async function ProjectsSection() {
     >
       <div className="py-24">
         <FadeIn className="mb-16 px-6 text-center">
-          <p className="mb-3 text-sm font-semibold tracking-wider text-amber-700 uppercase dark:text-amber-500">
-            My Work
-          </p>
-          <h2 className="font-heading text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl dark:text-white">
-            Projects
-          </h2>
+          <SectionHeading eyebrow="My Work" title="Projects" />
         </FadeIn>
 
         <ProjectsScroller projects={projects} />

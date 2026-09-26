@@ -1,25 +1,25 @@
 import Link from 'next/link'
 import CurrentYear from './CurrentYear'
 import FadeIn from './FadeIn'
-
-const DEFAULT_SOCIAL_LINKS = [
-  {
-    platform: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/bram-verslype-b27460408/',
-  },
-  { platform: 'GitHub', url: 'https://github.com/VerslypeBram' },
-]
+import { DEFAULT_NAV_LINKS, resolveSocialLinks } from '@/app/lib/constants'
+import type { NavLink, SocialLink } from '@/app/lib/settings'
 
 interface FooterProps {
-  socialLinks?: { platform: string; url: string; icon?: string }[]
+  navLinks?: NavLink[]
+  socialLinks?: SocialLink[]
   footerText?: string
 }
 
-export default function Footer({ socialLinks, footerText }: FooterProps) {
-  const socials = socialLinks?.length ? socialLinks : DEFAULT_SOCIAL_LINKS
+export default function Footer({
+  navLinks,
+  socialLinks,
+  footerText,
+}: FooterProps) {
+  const links = navLinks?.length ? navLinks : DEFAULT_NAV_LINKS
+  const socials = resolveSocialLinks(socialLinks)
 
   return (
-    <footer className="bg-background dark:bg-background-dark w-full pt-12 pb-0 transition-colors">
+    <footer className="bg-background w-full pt-12 pb-0 transition-colors">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <FadeIn>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8">
@@ -43,18 +43,13 @@ export default function Footer({ socialLinks, footerText }: FooterProps) {
                 Navigation
               </h2>
               <ul className="flex flex-col gap-2">
-                {[
-                  { name: 'About Me', href: '#about' },
-                  { name: 'Expertise', href: '#skills' },
-                  { name: 'My Work', href: '#projects' },
-                  { name: 'Contact', href: '#contact' },
-                ].map(link => (
-                  <li key={link.name}>
+                {links.map(link => (
+                  <li key={link.href}>
                     <Link
                       href={link.href}
                       className="text-sm text-neutral-600 decoration-amber-500 underline-offset-4 transition-colors hover:text-neutral-900 hover:underline hover:decoration-2 dark:text-neutral-300 dark:hover:text-white"
                     >
-                      {link.name}
+                      {link.label}
                     </Link>
                   </li>
                 ))}
@@ -68,7 +63,7 @@ export default function Footer({ socialLinks, footerText }: FooterProps) {
               </h2>
               <ul className="flex flex-col gap-2">
                 {socials.map(link => (
-                  <li key={link.platform}>
+                  <li key={link.url}>
                     <a
                       href={link.url}
                       target="_blank"

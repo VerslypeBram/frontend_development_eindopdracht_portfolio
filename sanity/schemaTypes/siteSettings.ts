@@ -46,6 +46,12 @@ export const siteSettings = defineType({
               title: 'Iconify Icon (e.g. mdi:github)',
               type: 'string',
             },
+            {
+              name: 'handle',
+              title: 'Handle (e.g. @VerslypeBram)',
+              type: 'string',
+              description: 'Shown next to the icon in the contact section.',
+            },
           ],
         }),
       ],

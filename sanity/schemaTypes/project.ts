@@ -20,6 +20,14 @@ export default defineType({
       validation: Rule => Rule.required(),
     }),
     defineField({
+      name: 'order',
+      title: 'Order',
+      type: 'number',
+      description:
+        'Position on the homepage (1 = first). Projects without a number come last, newest first.',
+      validation: Rule => Rule.integer().min(1),
+    }),
+    defineField({
       name: 'description',
       title: 'Short Description',
       type: 'text',
@@ -61,5 +69,12 @@ export default defineType({
       title: 'Live URL',
       type: 'url',
     }),
+  ],
+  orderings: [
+    {
+      title: 'Homepage order',
+      name: 'homepageOrder',
+      by: [{ field: 'order', direction: 'asc' }],
+    },
   ],
 })

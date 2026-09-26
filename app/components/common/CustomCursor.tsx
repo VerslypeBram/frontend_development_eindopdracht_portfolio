@@ -19,20 +19,6 @@ const RING_VARIANTS = {
     borderColor: 'rgb(245 158 11)',
     opacity: 1,
   },
-  text: {
-    width: 3,
-    height: 24,
-    borderWidth: 3,
-    borderColor: 'rgb(245 158 11)',
-    opacity: 0.9,
-  },
-  drag: {
-    width: 36,
-    height: 36,
-    borderWidth: 3,
-    borderColor: 'rgb(255 255 255)',
-    opacity: 0.9,
-  },
 }
 
 export default function CustomCursor() {

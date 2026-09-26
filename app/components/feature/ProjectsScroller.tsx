@@ -4,6 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import Tag from '@/app/components/common/Tag'
 import type { Project } from '@/app/types'
 
 const cardVariants = {
@@ -24,8 +26,6 @@ function ProjectCard({
   index: number
   isInView: boolean
 }) {
-  const cardRef = useRef<HTMLDivElement>(null)
-
   const inner = (
     <>
       {project.cloudinaryUrl && (
@@ -54,12 +54,12 @@ function ProjectCard({
             {project.tags.map((tag, i) => {
               if (!tag) return null
               return (
-                <span
+                <Tag
                   key={`${tag}-${i}`}
-                  className="cursor-default rounded-lg border border-neutral-200 bg-neutral-100 px-3 py-1.5 text-sm font-medium text-neutral-700 transition-all duration-200 hover:scale-[1.04] hover:border-amber-400 dark:border-white/10 dark:bg-white/10 dark:text-neutral-200 dark:hover:border-amber-500"
+                  className="cursor-default transition-all duration-200 hover:scale-[1.04] hover:border-amber-400 dark:hover:border-amber-500"
                 >
                   {tag}
-                </span>
+                </Tag>
               )
             })}
           </div>
@@ -68,18 +68,10 @@ function ProjectCard({
         {project.slug && (
           <span className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-amber-700 dark:text-amber-500">
             View project
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+            <ArrowRight
+              aria-hidden="true"
               className="h-4 w-4 transition-transform duration-200 group-hover/card:translate-x-1"
-            >
-              <path
-                fillRule="evenodd"
-                d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
-                clipRule="evenodd"
-              />
-            </svg>
+            />
           </span>
         )}
       </div>
@@ -88,14 +80,12 @@ function ProjectCard({
 
   return (
     <motion.div
-      ref={cardRef}
       custom={index}
       variants={cardVariants}
       initial="hidden"
       animate={isInView ? 'show' : 'hidden'}
       whileHover={{ y: -8 }}
       className="group/card flex w-[min(calc(100vw-2rem),20rem)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-[border-color] duration-300 hover:border-amber-500 md:w-96 dark:border-white/10 dark:bg-white/5 dark:hover:border-amber-500"
-      data-cursor-invert
     >
       {project.slug ? (
         <Link
@@ -143,18 +133,7 @@ export default function ProjectsScroller({ projects }: Props) {
         aria-label="Scroll left"
         className="absolute top-1/2 left-4 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-md transition-colors hover:border-amber-500 md:flex dark:border-white/10 dark:bg-neutral-800 dark:text-white dark:hover:border-amber-500"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          className="h-5 w-5"
-        >
-          <path
-            fillRule="evenodd"
-            d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"
-            clipRule="evenodd"
-          />
-        </svg>
+        <ChevronLeft aria-hidden="true" className="h-5 w-5" />
       </button>
 
       <button
@@ -162,18 +141,7 @@ export default function ProjectsScroller({ projects }: Props) {
         aria-label="Scroll right"
         className="absolute top-1/2 right-4 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-md transition-colors hover:border-amber-500 md:flex dark:border-white/10 dark:bg-neutral-800 dark:text-white dark:hover:border-amber-500"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          className="h-5 w-5"
-        >
-          <path
-            fillRule="evenodd"
-            d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 1 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
-            clipRule="evenodd"
-          />
-        </svg>
+        <ChevronRight aria-hidden="true" className="h-5 w-5" />
       </button>
 
       {/* Fade edges */}
