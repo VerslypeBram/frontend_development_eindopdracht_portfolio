@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { PortableText } from 'next-sanity'
+import { PortableText, type PortableTextComponents } from 'next-sanity'
 import type { Metadata } from 'next'
 import { client } from '@/sanity/lib/client'
 import { sanityFetch } from '@/sanity/lib/live'
@@ -10,6 +10,15 @@ import { ArrowLeft, ExternalLink } from 'lucide-react'
 import StaticIcon from '@/app/components/common/StaticIcon'
 import Tag from '@/app/components/common/Tag'
 import type { Project } from '@/app/types'
+
+// The page title is the only h1, so the section headings in the CMS text are
+// the next level down. Editors often pick "Heading 3" in Sanity; render those
+// as h2 as well so the outline never skips a level (h1 -> h3).
+const portableTextComponents: PortableTextComponents = {
+  block: {
+    h3: ({ children }) => <h2>{children}</h2>,
+  },
+}
 
 async function getProject(slug: string): Promise<Project | null> {
   try {
@@ -114,7 +123,10 @@ export default async function ProjectPage({
           <div className="lg:col-span-2">
             {project.longDescription && project.longDescription.length > 0 ? (
               <div className="portable-text [&_h2]:font-heading [&_h3]:font-heading space-y-5 text-base leading-relaxed text-neutral-700 dark:text-neutral-300 [&_a]:text-amber-700 [&_a]:underline [&_a]:underline-offset-2 dark:[&_a]:text-amber-400 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-neutral-900 dark:[&_h2]:text-white [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-neutral-900 dark:[&_h3]:text-white [&_ol]:list-decimal [&_ol]:pl-5 [&_strong]:font-semibold [&_strong]:text-neutral-900 dark:[&_strong]:text-white [&_ul]:list-disc [&_ul]:pl-5">
-                <PortableText value={project.longDescription} />
+                <PortableText
+                  value={project.longDescription}
+                  components={portableTextComponents}
+                />
               </div>
             ) : (
               <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
