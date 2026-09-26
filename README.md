@@ -1,165 +1,106 @@
-# CMS-onderzoek: Next.js Portfolio
+# Bram Verslype — Portfolio
 
-[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-black?style=for-the-badge&logo=vercel)](https://www.bramverslype.be)
+[![Live site](https://img.shields.io/badge/live-bramverslype.be-f59e0b?style=for-the-badge)](https://www.bramverslype.be)
+[![Deployed on Vercel](https://img.shields.io/badge/Vercel-deployed-black?style=for-the-badge&logo=vercel)](https://www.bramverslype.be)
 
-**Live site:** [www.bramverslype.be](https://www.bramverslype.be)
+My personal portfolio: a CMS-driven Next.js site where I showcase my projects as a
+Multimedia & Creative Technology student (Next Web Developer track) at Howest.
 
-Voor deze opdracht heb ik onderzocht welk CMS het best past bij mijn portfolio in Next.js.
-Daarna heb ik een kleine werkende PoC gebouwd met Sanity + Cloudinary.
+**Live:** [www.bramverslype.be](https://www.bramverslype.be)
 
-## Fase 1: Vooronderzoek
+![Preview of the portfolio](https://www.bramverslype.be/opengraph-image)
 
-Ik heb 3 CMS-systemen vergeleken: Sanity, Contentful en Strapi.
+## Tech stack
 
-| Systeem    | Wat is het?                                    | Voor- en nadelen                                                              | Gratis tier?     | Next.js-integratie                              | Geschikt voor portfolio?     |
-| :--------- | :--------------------------------------------- | :---------------------------------------------------------------------------- | :--------------- | :---------------------------------------------- | :--------------------------- |
-| Sanity     | Headless CMS (SaaS) met eigen Studio           | + Flexibel, schema in code, sterke docs. - In het begin wat leercurve (GROQ). | Ja               | Heel goed (next-sanity, App Router voorbeelden) | Ja, zeker                    |
-| Contentful | Headless CMS (SaaS)                            | + Gebruiksvriendelijk en stabiel. - Gratis plan sneller beperkt.              | Ja               | Heel goed (officiële SDK + docs)                | Ja                           |
-| Strapi     | Open-source headless CMS (meestal self-hosted) | + Veel controle. - Meer setup/onderhoud (hosting, updates, db).               | Ja (self-hosted) | Goed (REST/GraphQL)                             | Ja, maar zwaarder qua beheer |
+| Area      | Choice                                                                 |
+| :-------- | :--------------------------------------------------------------------- |
+| Framework | Next.js 16 (App Router, React Server Components), React 19             |
+| Language  | TypeScript, env variables validated with Zod                           |
+| Styling   | Tailwind CSS v4, dark mode with `next-themes`, Framer Motion           |
+| CMS       | Sanity v5 with the Studio embedded at `/studio`                        |
+| Images    | Cloudinary, served through `next/image` (AVIF/WebP, blur placeholders) |
+| Hosting   | Vercel                                                                 |
+| Tooling   | ESLint, Prettier, Husky + lint-staged                                  |
 
-## Mijn keuze
+## Highlights
 
-Ik heb gekozen voor Sanity.
+- **Content without redeploys.** All texts, projects, skills and links live in Sanity.
+  Data is fetched in Server Components with `sanityFetch` and cache tags; a Sanity
+  webhook calls `/api/revalidate`, so edits appear on the site within seconds.
+- **Streaming UI.** Every homepage section is its own `<Suspense>` boundary with a
+  skeleton, so a slow query never blocks the rest of the page.
+- **Project case pages.** Statically generated per slug (`generateStaticParams`),
+  with their own metadata, Open Graph image and a real 404 for unknown slugs.
+- **SEO.** Generated `sitemap.xml` (including CMS projects), `robots.txt`, canonical
+  URLs, a title template and an Open Graph image rendered with `next/og`.
+- **Accessibility.** Semantic heading order, skip link, colour contrast aimed at WCAG AA,
+  44 px touch targets, a pausable photo carousel and full support for
+  `prefers-reduced-motion` (no typewriter, tilt, autoplay or cursor ring).
+- **Performance.** Self-hosted fonts via `next/font`, icons rendered as inline SVG
+  on the server, the LCP image visible from the first paint, and responsive
+  image `sizes` everywhere.
+- **Draft mode.** Editors can preview unpublished changes through `/api/draft`.
 
-Waarom ik die gekozen heb:
+## Project structure
 
-- Werkt super goed samen met Next.js.
-- Ik kan mijn schema's in TypeScript schrijven i.p.v. alles in een dashboard te klikken.
-- De gratis tier is ruim genoeg voor een portfolio.
-- Sanity Studio zit gewoon in hetzelfde project, wat handig werkt.
+```text
+app/
+├── (site)/                 # One-page homepage: hero, about, skills, projects, contact
+├── (project)/projects/     # Project case pages (/projects/[slug])
+├── api/                    # Draft mode + revalidation webhook
+├── components/
+│   ├── common/             # Reusable UI (Button, SectionHeading, Tag, NavBar, ...)
+│   └── feature/            # Homepage sections
+├── lib/                    # Site settings, constants, helpers
+├── studio/                 # Embedded Sanity Studio
+├── sitemap.ts, robots.ts, opengraph-image.tsx, icon.tsx
+sanity/
+├── schemaTypes/            # Content model (project, hero, aboutMe, skills, tag, siteSettings)
+└── lib/                    # Sanity client + live content
+docs/                       # CMS research (in Dutch) and screenshots
+```
 
-## Fase 2: Proof of Concept
+## Getting started
 
-Wat werkt er in mijn PoC:
-
-- Op de homepagina haal ik projecten op uit Sanity.
-- Als ik content verander in Sanity, verandert de site mee zonder code aan te passen.
-- Alles draait lokaal.
-
-Contenttype dat ik nu gebruik:
-
-- `project` (title, description, cloudinaryUrl, tags)
-- `hero` (name, role, bio, …)
-- `aboutMe` (tekst, afbeelding, …)
-- `skills` (naam, niveau, categorie, …)
-
-## Fase 2b: SSR + caching + Cloudinary
-
-### Server-side rendering / data ophalen
-
-De data wordt opgehaald in een Server Component (geen useEffect).
-
-Mijn keuze:
-
-- Voor de projectenlijst gebruik ik `'use cache'` + `cacheLife('hours')`
-
-Waarom:
-
-- Projecten veranderen niet elk uur, dus cachen is logisch.
-- Dat geeft minder onnodige requests en een stabiele performance.
-- Als ik content zou hebben die constant verandert, zou ik eerder dynamic fetch gebruiken.
-
-In dit project:
-
-- cacheComponents staat aan.
-- getProjects gebruikt use cache + cacheLife('hours').
-
-### Afbeeldingen via Cloudinary
-
-Wat ik gedaan heb:
-
-- Afbeeldingen gehost op Cloudinary.
-- Cloudinary URL opgeslagen in Sanity als veld cloudinaryUrl.
-- In Next.js render ik die met de Image-component.
-- remotePatterns voor res.cloudinary.com staat in de config.
-
-Een voorbeeld van een Cloudinary transformatie-URL:
-
-`https://res.cloudinary.com/<cloud-name>/image/upload/f_auto,q_auto,c_fill,w_1200,h_630/<public-id>.jpg`
-
-## Project lokaal opstarten
-
-### Vereisten
-
-- Node.js 20+
-- npm
-- Git
-
-### 1. Clone de repo
+Requirements: Node.js 24 (see `.nvmrc`), npm and a Sanity project.
 
 ```bash
 git clone https://github.com/VerslypeBram/frontend_development_eindopdracht_portfolio.git
 cd frontend_development_eindopdracht_portfolio
-```
-
-### 2. Installeer dependencies
-
-```bash
 npm install
-```
-
-### 3. Omgevingsvariabelen instellen
-
-Kopieer `.env.example` naar `.env.local` en vul de waarden in:
-
-```bash
-cp .env.example .env.local
-```
-
-| Variabele                        | Waar vinden?                                     |
-| :------------------------------- | :----------------------------------------------- |
-| `NEXT_PUBLIC_SANITY_PROJECT_ID`  | Sanity dashboard → Project settings              |
-| `NEXT_PUBLIC_SANITY_DATASET`     | Standaard `production`                           |
-| `NEXT_PUBLIC_SANITY_API_VERSION` | Datum van vandaag of `2026-04-10`                |
-| `SANITY_API_READ_TOKEN`          | Sanity dashboard → API → Tokens                  |
-| `SANITY_REVALIDATE_SECRET`       | Zelf te genereren (bijv. `openssl rand -hex 32`) |
-| `SANITY_PREVIEW_SECRET`          | Zelf te genereren (bijv. `openssl rand -hex 32`) |
-
-### 4. Start de app
-
-```bash
+cp .env.example .env.local   # then fill in the values below
 npm run dev
 ```
 
-- Portfolio: http://localhost:3000
+- Site: http://localhost:3000
 - Sanity Studio: http://localhost:3000/studio
+
+| Variable                         | Where to find it                                                     |
+| :------------------------------- | :------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID`  | Sanity dashboard → Project settings                                  |
+| `NEXT_PUBLIC_SANITY_DATASET`     | Usually `production`                                                 |
+| `NEXT_PUBLIC_SANITY_API_VERSION` | A date, e.g. `2026-04-10`                                            |
+| `SANITY_API_READ_TOKEN`          | Sanity dashboard → API → Tokens (Viewer)                             |
+| `SANITY_REVALIDATE_SECRET`       | Generate one, e.g. `openssl rand -hex 32` (required for the webhook) |
+| `SANITY_PREVIEW_SECRET`          | Generate one, e.g. `openssl rand -hex 32`                            |
 
 ## Deployment (Vercel)
 
-1. Importeer de GitHub-repo in [vercel.com](https://vercel.com).
-2. Stel alle omgevingsvariabelen uit `.env.example` in via Vercel → Project → Settings → Environment Variables.
-3. Configureer een Sanity-webhook: Sanity dashboard → API → Webhooks → URL: `https://<jouw-domein>/api/revalidate`, methode `POST`, header `Authorization: Bearer <SANITY_REVALIDATE_SECRET>`.
-4. Voor draft/preview: stel de preview-URL in als `https://<jouw-domein>/api/draft?secret=<SANITY_PREVIEW_SECRET>&slug={slug}`.
+1. Import the repository in Vercel and add all variables from `.env.example`.
+2. In Sanity → API → Webhooks, add a webhook to `https://<domain>/api/revalidate`
+   (method `POST`, header `Authorization: Bearer <SANITY_REVALIDATE_SECRET>`,
+   projection `{_type}`). Without the secret the endpoint rejects every request.
+3. For draft previews, use
+   `https://<domain>/api/draft?secret=<SANITY_PREVIEW_SECRET>&slug={slug}`.
 
-## Screenshots (nog in te vullen)
+## Background
 
-### 1. Sanity Studio dashboard
+This site started as the final assignment for the Front-End Development course,
+where I compared Sanity, Contentful and Strapi and built a proof of concept.
+That research (in Dutch) is in [docs/cms-onderzoek.md](docs/cms-onderzoek.md).
 
-![Overzicht van het Sanity Studio dashboard met alle content types](image-1.png)
+## Contact
 
-### 2. Een ingevuld project in Sanity
-
-![Een ingevuld project-document in Sanity Studio met title, description, cloudinaryUrl en tags](image-2.png)
-
-### 3. Resultaat op de website
-
-![De projectenpagina op de lokale Next.js-site met data uit Sanity](image-3.png)
-
-## Rubriek: CWV & Deployment
-
-### Lighthouse Rapport
-Hieronder staan de resultaten van de Lighthouse scan op de live URL.
-
-| Category          | Score |
-| :---------------- | :---- |
-| **Performance**    | 95    |
-| **Accessibility**  | 98    |
-| **Best Practices** | 96    |
-| **SEO**            | 100   |
-
-[Bekijk het volledige rapport op PageSpeed Insights](https://pagespeed.web.dev/analysis/https-www-bramverslype-be/khmk38c0lw?form_factor=desktop&category=performance&category=accessibility&category=best-practices&category=seo&hl=nl&utm_source=lh-chrome-ext)
-
-> [!IMPORTANT]
-> Sla je screenshot van de scores op als `lighthouse.png` in deze map om hem hieronder te tonen.
-
-![Lighthouse Scan Resultaten](lighthouse.png)
+- GitHub: [@VerslypeBram](https://github.com/VerslypeBram)
+- LinkedIn: [Bram Verslype](https://www.linkedin.com/in/bram-verslype-b27460408/)
+- Website: [bramverslype.be](https://www.bramverslype.be/#contact)
