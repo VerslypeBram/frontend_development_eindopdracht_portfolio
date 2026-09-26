@@ -21,6 +21,12 @@ const iconMap: Record<string, string> = {
   css: 'devicon-plain:css3',
   linux: 'devicon-plain:linux',
   'rest apis': 'devicon-plain:swagger',
+  'c#': 'devicon-plain:csharp',
+  '.net': 'devicon-plain:dot-net',
+  'c#/.net': 'devicon-plain:dot-net',
+  'c# / .net': 'devicon-plain:dot-net',
+  azure: 'devicon-plain:azure',
+  'microsoft azure': 'devicon-plain:azure',
 }
 
 export default function SkillIcon({ name }: { name: string }) {
