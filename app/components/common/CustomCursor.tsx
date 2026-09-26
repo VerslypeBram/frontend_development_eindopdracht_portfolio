@@ -35,13 +35,6 @@ const RING_VARIANTS = {
   },
 }
 
-const DOT_SIZE = {
-  default: 5,
-  hover: 0,
-  text: 0,
-  drag: 8,
-}
-
 export default function CustomCursor() {
   const [visible, setVisible] = useState(false)
   const visibleRef = useRef(false)
@@ -51,10 +44,13 @@ export default function CustomCursor() {
   const y = useMotionValue(-200)
 
   useEffect(() => {
-    // Don't attach mouse listeners on touch devices
+    // Only track the mouse when the ring is shown: same condition as the
+    // media query in globals.css (no touch devices, no reduced motion)
     if (typeof window === 'undefined') return
-    const hasFinePointer = window.matchMedia('(pointer: fine)').matches
-    if (!hasFinePointer) return
+    const showRing = window.matchMedia(
+      '(pointer: fine) and (prefers-reduced-motion: no-preference)',
+    ).matches
+    if (!showRing) return
 
     const move = (e: MouseEvent) => {
       x.set(e.clientX)
@@ -94,44 +90,26 @@ export default function CustomCursor() {
   }, [x, y, setVariant])
 
   const rv = RING_VARIANTS[variant]
-  const dotSize = DOT_SIZE[variant]
 
   return (
-    <>
-      {/* Ring — instant position, spring only on size/opacity changes */}
-      <motion.div
-        className="custom-cursor-element pointer-events-none fixed top-0 left-0 z-[9999] rounded-full"
-        style={{
-          x,
-          y,
-          translateX: '-50%',
-          translateY: '-50%',
-          border: `${rv.borderWidth}px solid ${rv.borderColor}`,
-        }}
-        animate={{
-          width: rv.width,
-          height: rv.height,
-          opacity: visible ? rv.opacity : 0,
-          borderColor: rv.borderColor,
-        }}
-        transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-      />
-      {/* Dot — instant, no lag */}
-      <motion.div
-        className="custom-cursor-element pointer-events-none fixed top-0 left-0 z-[9999] rounded-full bg-amber-400"
-        style={{
-          x,
-          y,
-          translateX: '-50%',
-          translateY: '-50%',
-        }}
-        animate={{
-          width: dotSize,
-          height: dotSize,
-          opacity: visible && dotSize > 0 ? 1 : 0,
-        }}
-        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-      />
-    </>
+    // Ring around the native cursor — instant position, spring only on
+    // size/opacity changes. The native cursor itself stays visible.
+    <motion.div
+      className="custom-cursor-element pointer-events-none fixed top-0 left-0 z-[9999] rounded-full"
+      style={{
+        x,
+        y,
+        translateX: '-50%',
+        translateY: '-50%',
+        border: `${rv.borderWidth}px solid ${rv.borderColor}`,
+      }}
+      animate={{
+        width: rv.width,
+        height: rv.height,
+        opacity: visible ? rv.opacity : 0,
+        borderColor: rv.borderColor,
+      }}
+      transition={{ type: 'spring', stiffness: 300, damping: 28 }}
+    />
   )
 }
