@@ -14,6 +14,28 @@ export const siteSettings = defineType({
       initialValue: 'Bram Verslype Portfolio',
     }),
     defineField({
+      name: 'availability',
+      title: 'Availability',
+      type: 'string',
+      description:
+        'Short status shown in the hero and contact section, e.g. "Looking for an internship · 15 Feb – 4 Jun 2027 · Kortrijk area". Leave empty to hide.',
+    }),
+    defineField({
+      name: 'email',
+      title: 'Contact Email',
+      type: 'string',
+      description: 'Shown as text and used for the email button.',
+      validation: Rule => Rule.email(),
+    }),
+    defineField({
+      name: 'cvFile',
+      title: 'CV (PDF)',
+      type: 'file',
+      options: { accept: 'application/pdf' },
+      description:
+        'Upload your CV. A "Download CV" button appears in the hero and contact section.',
+    }),
+    defineField({
       name: 'navLinks',
       title: 'Navigation Links',
       type: 'array',

@@ -54,7 +54,7 @@ export default function OpengraphImage() {
           color: '#a3a3a3',
         }}
       >
-        Portfolio · Looking for a web development internship
+        Looking for a web dev internship · Feb–Jun 2027 · Kortrijk
       </div>
       <div
         style={{

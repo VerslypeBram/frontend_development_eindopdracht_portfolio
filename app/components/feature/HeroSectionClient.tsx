@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { ArrowRight, ChevronDown } from 'lucide-react'
+import { ArrowRight, ChevronDown, FileDown } from 'lucide-react'
 import {
   motion,
   useMotionValue,
@@ -10,6 +10,7 @@ import {
   useTransform,
 } from 'framer-motion'
 import { useRef, useCallback, useState, useEffect } from 'react'
+import AvailabilityBadge from '@/app/components/common/AvailabilityBadge'
 import Button from '@/app/components/common/Button'
 import type { HeroData } from '@/app/types'
 
@@ -104,9 +105,13 @@ function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
 export default function HeroSectionClient({
   hero,
   blurUrl,
+  availability,
+  cvUrl,
 }: {
   hero: HeroData
   blurUrl?: string
+  availability?: string
+  cvUrl?: string
 }) {
   const sectionRef = useRef<HTMLElement>(null)
   const rawX = useMotionValue(0)
@@ -150,6 +155,12 @@ export default function HeroSectionClient({
           initial="hidden"
           animate="show"
         >
+          {availability && (
+            <motion.div variants={textItem}>
+              <AvailabilityBadge>{availability}</AvailabilityBadge>
+            </motion.div>
+          )}
+
           {hero.tagline && (
             <motion.span
               variants={textItem}
@@ -186,7 +197,7 @@ export default function HeroSectionClient({
 
           <motion.div
             variants={textItem}
-            className="mt-2 flex items-center gap-4"
+            className="mt-2 flex flex-wrap items-center gap-4"
           >
             <Button href="#projects">
               View My Work{' '}
@@ -195,9 +206,17 @@ export default function HeroSectionClient({
                 className="transition-transform duration-200 group-hover:translate-x-2"
               />
             </Button>
-            <Button href="#about" variant="outline">
-              About Me
-            </Button>
+            {cvUrl ? (
+              <Button href={cvUrl} external variant="outline">
+                <FileDown size={16} aria-hidden="true" />
+                Download CV
+                <span className="sr-only"> (PDF, opens in a new tab)</span>
+              </Button>
+            ) : (
+              <Button href="#about" variant="outline">
+                About Me
+              </Button>
+            )}
           </motion.div>
         </motion.div>
 
