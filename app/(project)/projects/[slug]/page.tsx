@@ -121,7 +121,7 @@ export default async function ProjectPage({
           {/* Main content */}
           <div className="lg:col-span-2">
             {project.longDescription && project.longDescription.length > 0 ? (
-              <div className="portable-text [&_h2]:font-heading [&_h3]:font-heading space-y-5 text-base leading-relaxed text-neutral-700 dark:text-neutral-300 [&_a]:text-amber-600 [&_a]:underline [&_a]:underline-offset-2 dark:[&_a]:text-amber-400 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-neutral-900 dark:[&_h2]:text-white [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-neutral-900 dark:[&_h3]:text-white [&_ol]:list-decimal [&_ol]:pl-5 [&_strong]:font-semibold [&_strong]:text-neutral-900 dark:[&_strong]:text-white [&_ul]:list-disc [&_ul]:pl-5">
+              <div className="portable-text [&_h2]:font-heading [&_h3]:font-heading space-y-5 text-base leading-relaxed text-neutral-700 dark:text-neutral-300 [&_a]:text-amber-700 [&_a]:underline [&_a]:underline-offset-2 dark:[&_a]:text-amber-400 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-neutral-900 dark:[&_h2]:text-white [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-neutral-900 dark:[&_h3]:text-white [&_ol]:list-decimal [&_ol]:pl-5 [&_strong]:font-semibold [&_strong]:text-neutral-900 dark:[&_strong]:text-white [&_ul]:list-disc [&_ul]:pl-5">
                 <PortableText value={project.longDescription} />
               </div>
             ) : (
@@ -136,9 +136,9 @@ export default async function ProjectPage({
             {/* Tags */}
             {project.tags && project.tags.length > 0 && (
               <div>
-                <h3 className="font-heading mb-4 text-sm font-semibold tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
+                <h2 className="font-heading mb-4 text-sm font-semibold tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
                   Technologies
-                </h3>
+                </h2>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map(tag => (
                     <span
@@ -155,16 +155,16 @@ export default async function ProjectPage({
             {/* Links */}
             {(project.liveUrl || project.githubUrl) && (
               <div>
-                <h3 className="font-heading mb-4 text-sm font-semibold tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
+                <h2 className="font-heading mb-4 text-sm font-semibold tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
                   Links
-                </h3>
+                </h2>
                 <div className="flex flex-col gap-3">
                   {project.liveUrl && (
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-amber-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-500 hover:shadow-lg dark:bg-amber-500 dark:hover:bg-amber-400"
+                      className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-amber-500 px-6 py-3 text-sm font-semibold text-neutral-950 transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-400 hover:shadow-lg"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

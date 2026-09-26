@@ -25,12 +25,9 @@ export default async function SkillsSection() {
     <section id="skills" className="bg-background w-full">
       <div className="mx-auto max-w-6xl px-6 py-24">
         <FadeIn className="mb-16 text-center">
-          <h3
-            className="mb-3 text-sm font-semibold tracking-wider text-amber-600 uppercase dark:text-amber-500"
-            data-cursor-invert
-          >
+          <p className="mb-3 text-sm font-semibold tracking-wider text-amber-700 uppercase dark:text-amber-500">
             EXPERTISE
-          </h3>
+          </p>
           <h2 className="font-heading text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl dark:text-white">
             Skills & Technologies
           </h2>

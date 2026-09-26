@@ -66,7 +66,7 @@ function ProjectCard({
         )}
 
         {project.slug && (
-          <span className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-amber-600 dark:text-amber-500">
+          <span className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-amber-700 dark:text-amber-500">
             View project
             <svg
               xmlns="http://www.w3.org/2000/svg"
