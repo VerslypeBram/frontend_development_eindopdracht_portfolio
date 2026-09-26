@@ -2,6 +2,7 @@ import { sanityFetch } from '@/sanity/lib/live'
 import ProjectsScroller from './ProjectsScroller'
 import FadeIn from '@/app/components/common/FadeIn'
 import type { Project } from '@/app/types'
+import SectionHeading from '@/app/components/common/SectionHeading'
 
 async function getProjects(): Promise<Project[]> {
   try {
@@ -28,12 +29,7 @@ export default async function ProjectsSection() {
     >
       <div className="py-24">
         <FadeIn className="mb-16 px-6 text-center">
-          <p className="mb-3 text-sm font-semibold tracking-wider text-amber-700 uppercase dark:text-amber-500">
-            My Work
-          </p>
-          <h2 className="font-heading text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl dark:text-white">
-            Projects
-          </h2>
+          <SectionHeading eyebrow="My Work" title="Projects" />
         </FadeIn>
 
         <ProjectsScroller projects={projects} />

@@ -3,6 +3,7 @@ import FanPhotoCarousel from './FanPhotoCarousel'
 import FadeIn from '@/app/components/common/FadeIn'
 import { PortableText } from '@portabletext/react'
 import type { AboutMeData } from '@/app/types'
+import SectionHeading from '@/app/components/common/SectionHeading'
 
 async function getAboutMe(): Promise<AboutMeData | null> {
   try {
@@ -26,12 +27,7 @@ export default async function AboutMe() {
     <section id="about" className="w-full bg-neutral-100 dark:bg-neutral-900">
       <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
         <FadeIn className="mb-16 text-center">
-          <p className="mb-3 text-sm font-semibold tracking-wider text-amber-700 uppercase dark:text-amber-500">
-            About Me
-          </p>
-          <h2 className="font-heading text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl lg:text-5xl dark:text-white">
-            Who I Am
-          </h2>
+          <SectionHeading eyebrow="About Me" title="Who I Am" />
         </FadeIn>
 
         <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-16">

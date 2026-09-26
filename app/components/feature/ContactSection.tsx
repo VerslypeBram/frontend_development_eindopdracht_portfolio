@@ -2,6 +2,7 @@ import { ArrowRight } from 'lucide-react'
 import StaticIcon from '@/app/components/common/StaticIcon'
 import Button from '@/app/components/common/Button'
 import FadeIn from '@/app/components/common/FadeIn'
+import SectionHeading from '@/app/components/common/SectionHeading'
 
 const SOCIAL_LINKS = [
   {
@@ -31,12 +32,11 @@ export default function ContactSection() {
 
       <div className="mx-auto max-w-6xl px-6 py-32">
         <FadeIn className="mb-10 text-center">
-          <p className="mb-3 text-sm font-semibold tracking-wider text-amber-700 uppercase dark:text-amber-500">
-            Contact
-          </p>
-          <h2 className="font-heading mb-6 text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl dark:text-white">
-            Let&apos;s Work Together
-          </h2>
+          <SectionHeading
+            eyebrow="Contact"
+            title={"Let's Work Together"}
+            className="mb-6"
+          />
           <p className="mx-auto max-w-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
             I&apos;m always open to new opportunities and interesting projects.
             Feel free to reach out! Got something in mind?

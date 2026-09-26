@@ -1,7 +1,9 @@
 import { sanityFetch } from '@/sanity/lib/live'
 import SkillIcon from '@/app/components/common/SkillIcon'
 import FadeIn from '@/app/components/common/FadeIn'
+import Tag from '@/app/components/common/Tag'
 import type { SkillsData } from '@/app/types'
+import SectionHeading from '@/app/components/common/SectionHeading'
 
 async function getSkills(): Promise<SkillsData | null> {
   try {
@@ -25,12 +27,7 @@ export default async function SkillsSection() {
     <section id="skills" className="bg-background w-full">
       <div className="mx-auto max-w-6xl px-6 py-24">
         <FadeIn className="mb-16 text-center">
-          <p className="mb-3 text-sm font-semibold tracking-wider text-amber-700 uppercase dark:text-amber-500">
-            EXPERTISE
-          </p>
-          <h2 className="font-heading text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl dark:text-white">
-            Skills & Technologies
-          </h2>
+          <SectionHeading eyebrow="Expertise" title={'Skills & Technologies'} />
         </FadeIn>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -50,13 +47,13 @@ export default async function SkillsSection() {
                 )}
                 <div className="grid grid-cols-2 gap-2">
                   {category.skills?.map(skill => (
-                    <span
+                    <Tag
                       key={skill}
-                      className="flex cursor-default items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-100 px-3 py-1.5 text-sm font-medium text-neutral-700 transition-all duration-200 hover:scale-[1.04] hover:border-amber-400 dark:border-white/10 dark:bg-white/10 dark:text-neutral-200 dark:hover:border-amber-500"
+                      className="flex cursor-default items-center gap-2 transition-all duration-200 hover:scale-[1.04] hover:border-amber-400 dark:hover:border-amber-500"
                     >
                       <SkillIcon name={skill} />
                       {skill}
-                    </span>
+                    </Tag>
                   ))}
                 </div>
               </div>
