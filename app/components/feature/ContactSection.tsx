@@ -31,12 +31,9 @@ export default function ContactSection() {
 
       <div className="mx-auto max-w-6xl px-6 py-32">
         <FadeIn className="mb-10 text-center">
-          <h3
-            className="mb-3 text-sm font-semibold tracking-wider text-amber-600 uppercase dark:text-amber-500"
-            data-cursor-invert
-          >
+          <p className="mb-3 text-sm font-semibold tracking-wider text-amber-700 uppercase dark:text-amber-500">
             Contact
-          </h3>
+          </p>
           <h2 className="font-heading mb-6 text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl dark:text-white">
             Let&apos;s Work Together
           </h2>

@@ -31,14 +31,16 @@ const textItem = {
   },
 }
 
-/** The profile photo appears last, slightly slower */
+/**
+ * The profile photo is the LCP element, so it stays fully opaque from the
+ * first paint and only settles into place with a subtle transform.
+ */
 const imageVariant = {
-  hidden: { opacity: 0, scale: 0.96, y: 16 },
+  hidden: { scale: 0.96, y: 16 },
   show: {
-    opacity: 1,
     scale: 1,
     y: 0,
-    transition: { duration: 0.65, ease: 'easeOut' as const, delay: 0.75 },
+    transition: { duration: 0.65, ease: 'easeOut' as const },
   },
 }
 
@@ -147,9 +149,12 @@ export default function HeroSectionClient({
             className="font-heading text-4xl leading-tight font-bold text-neutral-900 sm:text-5xl md:text-6xl dark:text-white"
           >
             Hi, I&apos;m{' '}
+            {/* Full name in the server HTML for SEO and screen readers;
+                the typewriter is a visual-only effect. */}
+            <span className="sr-only">{hero.name}</span>
             <span
-              className="text-amber-600 dark:text-amber-500"
-              data-cursor-invert
+              className="text-amber-700 dark:text-amber-500"
+              aria-hidden="true"
             >
               <TypewriterText text={hero.name} delay={0.5} />
             </span>

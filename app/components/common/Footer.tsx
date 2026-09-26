@@ -39,9 +39,9 @@ export default function Footer({ socialLinks, footerText }: FooterProps) {
 
             {/* Quick Links */}
             <div className="flex flex-col gap-4">
-              <h4 className="text-sm font-semibold tracking-wider text-neutral-900 uppercase dark:text-white">
+              <h2 className="text-sm font-semibold tracking-wider text-neutral-900 uppercase dark:text-white">
                 Navigation
-              </h4>
+              </h2>
               <ul className="flex flex-col gap-2">
                 {[
                   { name: 'About Me', href: '#about' },
@@ -63,9 +63,9 @@ export default function Footer({ socialLinks, footerText }: FooterProps) {
 
             {/* Socials & Contact */}
             <div className="flex flex-col gap-4">
-              <h4 className="text-sm font-semibold tracking-wider text-neutral-900 uppercase dark:text-white">
+              <h2 className="text-sm font-semibold tracking-wider text-neutral-900 uppercase dark:text-white">
                 Connect
-              </h4>
+              </h2>
               <ul className="flex flex-col gap-2">
                 {socials.map(link => (
                   <li key={link.platform}>

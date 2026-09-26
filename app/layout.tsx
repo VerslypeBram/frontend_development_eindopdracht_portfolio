@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk } from 'next/font/google'
 import '@/env'
+import { SITE_URL } from './lib/site'
 import './globals.css'
 
 const spaceGrotesk = Space_Grotesk({
@@ -8,18 +9,28 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
 })
 
+const SITE_TITLE = 'Bram Verslype — Web Developer & MCT Student'
+const SITE_DESCRIPTION =
+  'Portfolio of Bram Verslype, Multimedia & Creative Technology student (Next Web Developer) at Howest, Kortrijk. Looking for a web development internship. Projects in React, Next.js and IoT.'
+
 export const metadata: Metadata = {
-  title: 'Bram Verslype',
-  description:
-    'Welcome to the portfolio of Bram Verslype, a passionate Next.js Web Developer. Discover my latest projects, skills, and creative web solutions.',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_TITLE,
+    template: '%s | Bram Verslype',
+  },
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: '/' },
   openGraph: {
-    title: 'Bram Verslype',
-    description:
-      'Welcome to the portfolio of Bram Verslype, a passionate Next.js Web Developer. Discover my latest projects, skills, and creative web solutions.',
-    url: 'https://bramverslype.be',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: '/',
     siteName: 'Bram Verslype Portfolio',
     locale: 'en_US',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
   },
 }
 
