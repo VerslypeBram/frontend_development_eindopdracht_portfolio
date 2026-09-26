@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk } from 'next/font/google'
+import localFont from 'next/font/local'
 import '@/env'
 import { SITE_URL } from './lib/site'
 import './globals.css'
@@ -7,6 +8,17 @@ import './globals.css'
 const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
   subsets: ['latin'],
+})
+
+// Self-hosted body font (Fontshare, ITF Free Font License): no render-blocking
+// third-party stylesheet. font-semibold (600) falls back to Bold, as before.
+const satoshi = localFont({
+  variable: '--font-satoshi',
+  src: [
+    { path: './fonts/Satoshi-Regular.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/Satoshi-Medium.woff2', weight: '500', style: 'normal' },
+    { path: './fonts/Satoshi-Bold.woff2', weight: '700', style: 'normal' },
+  ],
 })
 
 const SITE_TITLE = 'Bram Verslype — Web Developer & MCT Student'
@@ -43,25 +55,10 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className="scroll-smooth"
+      className={`${spaceGrotesk.variable} ${satoshi.variable} scroll-smooth`}
       data-scroll-behavior="smooth"
     >
-      <head>
-        <link
-          rel="preconnect"
-          href="https://api.fontshare.com"
-          crossOrigin="anonymous"
-        />
-        <link rel="preconnect" href="https://res.cloudinary.com" />
-        <link rel="preconnect" href="https://cdn.sanity.io" />
-        <link
-          rel="stylesheet"
-          href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&display=swap"
-        />
-      </head>
-      <body
-        className={`${spaceGrotesk.variable} flex min-h-full flex-col font-sans antialiased`}
-      >
+      <body className="flex min-h-full flex-col font-sans antialiased">
         <a href="#main" className="sr-only focus:not-sr-only">
           Skip to content
         </a>

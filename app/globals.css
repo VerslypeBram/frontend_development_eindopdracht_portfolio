@@ -26,8 +26,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans:
-    'Satoshi', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    var(--font-satoshi), ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --font-heading: var(--font-space-grotesk), sans-serif;
 }
 
@@ -59,16 +59,14 @@ body::before {
   display: none !important;
 }
 
-/* Show custom cursor only on devices with fine pointer (mouse) */
-@media (pointer: fine) {
+/*
+ * Show the cursor ring only on devices with a fine pointer (mouse) and when
+ * the user has no reduced-motion preference. The native cursor always stays
+ * visible, so enlarged or high-contrast system cursors keep working.
+ */
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .custom-cursor-element {
     display: block !important;
-  }
-
-  body:not(.sanity-studio) *,
-  body:not(.sanity-studio) *::before,
-  body:not(.sanity-studio) *::after {
-    cursor: none !important;
   }
 }
 

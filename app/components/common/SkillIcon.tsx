@@ -1,6 +1,4 @@
-'use client'
-
-import { Icon } from '@iconify/react'
+import StaticIcon from './StaticIcon'
 
 // devicon-plain for most icons (monochrome, consistent weight).
 // mdi fallback for icons missing from devicon-plain: react, tailwindcss, github.
@@ -28,5 +26,5 @@ const iconMap: Record<string, string> = {
 export default function SkillIcon({ name }: { name: string }) {
   const iconName = iconMap[name.toLowerCase()]
   if (!iconName) return null
-  return <Icon icon={iconName} className="h-4 w-4 shrink-0" />
+  return <StaticIcon icon={iconName} className="h-4 w-4 shrink-0" />
 }
