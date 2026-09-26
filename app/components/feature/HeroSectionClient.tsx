@@ -2,7 +2,13 @@
 
 import Image from 'next/image'
 import { ArrowRight, ChevronDown } from 'lucide-react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from 'framer-motion'
 import { useRef, useCallback, useState, useEffect } from 'react'
 import Button from '@/app/components/common/Button'
 import type { HeroData } from '@/app/types'
@@ -50,8 +56,10 @@ function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
   const [displayed, setDisplayed] = useState('')
   const [done, setDone] = useState(false)
   const [active, setActive] = useState(false)
+  const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
+    if (prefersReducedMotion) return
     let interval: ReturnType<typeof setInterval>
     const startTimer = setTimeout(() => {
       setActive(true)
@@ -70,7 +78,10 @@ function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
       clearTimeout(startTimer)
       clearInterval(interval)
     }
-  }, [text, delay])
+  }, [text, delay, prefersReducedMotion])
+
+  // Reduced motion: show the full name at once, without the blinking cursor
+  if (prefersReducedMotion) return <span>{text}</span>
 
   return (
     <span>
@@ -105,14 +116,18 @@ export default function HeroSectionClient({
   const rotateY = useTransform(springX, [-0.5, 0.5], [-8, 8])
   const rotateX = useTransform(springY, [-0.5, 0.5], [8, -8])
 
+  const prefersReducedMotion = useReducedMotion()
+
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
+      // No 3D tilt for users who prefer reduced motion
+      if (prefersReducedMotion) return
       const rect = sectionRef.current?.getBoundingClientRect()
       if (!rect) return
       rawX.set((e.clientX - rect.left) / rect.width - 0.5)
       rawY.set((e.clientY - rect.top) / rect.height - 0.5)
     },
-    [rawX, rawY],
+    [rawX, rawY, prefersReducedMotion],
   )
 
   const handleMouseLeave = useCallback(() => {
@@ -201,7 +216,7 @@ export default function HeroSectionClient({
               fill
               sizes="(max-width: 480px) 100vw, (max-width: 768px) 256px, 320px"
               quality={80}
-              className="object-cover transition-transform duration-500 hover:scale-[1.2]"
+              className="object-cover transition-transform duration-500 motion-safe:hover:scale-[1.2]"
               priority
               placeholder={blurUrl ? 'blur' : 'empty'}
               blurDataURL={blurUrl}
