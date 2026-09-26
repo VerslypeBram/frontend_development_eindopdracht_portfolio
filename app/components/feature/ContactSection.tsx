@@ -1,5 +1,5 @@
 import { ArrowRight } from 'lucide-react'
-import { Icon } from '@iconify/react'
+import StaticIcon from '@/app/components/common/StaticIcon'
 import Button from '@/app/components/common/Button'
 import FadeIn from '@/app/components/common/FadeIn'
 
@@ -70,7 +70,7 @@ export default function ContactSection() {
               aria-label={label}
               className="group flex items-center gap-3 rounded-xl border border-neutral-200 bg-white px-5 py-3 text-neutral-600 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:text-neutral-900 dark:border-white/10 dark:bg-white/3 dark:text-neutral-300 dark:hover:border-amber-500 dark:hover:text-white"
             >
-              <Icon icon={icon} width={18} height={18} />
+              <StaticIcon icon={icon} width={18} height={18} />
               <span className="hidden text-sm font-medium sm:block">
                 {handle}
               </span>
