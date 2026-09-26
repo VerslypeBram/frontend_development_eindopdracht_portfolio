@@ -1,14 +1,16 @@
-import { ArrowRight } from 'lucide-react'
+import { FileDown, Mail } from 'lucide-react'
+import AvailabilityBadge from '@/app/components/common/AvailabilityBadge'
 import StaticIcon from '@/app/components/common/StaticIcon'
 import Button from '@/app/components/common/Button'
 import FadeIn from '@/app/components/common/FadeIn'
 import SectionHeading from '@/app/components/common/SectionHeading'
-import { resolveSocialLinks } from '@/app/lib/constants'
+import { DEFAULT_EMAIL, resolveSocialLinks } from '@/app/lib/constants'
 import { getSiteSettings } from '@/app/lib/settings'
 
 export default async function ContactSection() {
   const settings = await getSiteSettings()
   const socialLinks = resolveSocialLinks(settings?.socialLinks)
+  const email = settings?.email || DEFAULT_EMAIL
 
   return (
     <section
@@ -27,22 +29,39 @@ export default async function ContactSection() {
             title={"Let's Work Together"}
             className="mb-6"
           />
+          {settings?.availability && (
+            <AvailabilityBadge className="mb-6">
+              {settings.availability}
+            </AvailabilityBadge>
+          )}
           <p className="mx-auto max-w-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
-            I&apos;m always open to new opportunities and interesting projects.
-            Feel free to reach out! Got something in mind?
-          </p>
-          <p className="mx-auto mt-4 max-w-sm text-base leading-relaxed text-neutral-600 dark:text-neutral-300">
-            Hit the button and let&apos;s start a conversation.
+            Looking for a motivated web development intern, or have a project in
+            mind? I&apos;d love to hear from you.
           </p>
 
-          <div className="mt-8">
-            <Button href="mailto:bram.verslype@student.howest.be">
-              Say Hello{' '}
-              <ArrowRight
-                size={16}
-                className="transition-transform duration-200 group-hover:translate-x-1"
-              />
+          {/* Address as visible text: the mailto button does nothing for
+              visitors without a configured mail app */}
+          <p className="mt-4 text-lg font-semibold text-neutral-900 dark:text-white">
+            <a
+              href={`mailto:${email}`}
+              className="break-all decoration-amber-500 underline-offset-4 hover:underline"
+            >
+              {email}
+            </a>
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Button href={`mailto:${email}`}>
+              <Mail size={16} aria-hidden="true" />
+              Email me
             </Button>
+            {settings?.cvUrl && (
+              <Button href={settings.cvUrl} external variant="outline">
+                <FileDown size={16} aria-hidden="true" />
+                Download CV
+                <span className="sr-only"> (PDF, opens in a new tab)</span>
+              </Button>
+            )}
           </div>
         </FadeIn>
 

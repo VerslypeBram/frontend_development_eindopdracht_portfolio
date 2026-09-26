@@ -23,7 +23,7 @@ const satoshi = localFont({
 
 const SITE_TITLE = 'Bram Verslype — Web Developer & MCT Student'
 const SITE_DESCRIPTION =
-  'Portfolio of Bram Verslype, Multimedia & Creative Technology student (Next Web Developer) at Howest, Kortrijk. Looking for a web development internship. Projects in React, Next.js and IoT.'
+  'Portfolio of Bram Verslype, Multimedia & Creative Technology student (Next Web Developer) at Howest, Kortrijk. Looking for a web development internship from 15 February to 4 June 2027 in the Kortrijk area. Projects in React, Next.js and IoT.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

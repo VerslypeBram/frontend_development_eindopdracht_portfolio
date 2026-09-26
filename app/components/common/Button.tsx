@@ -8,12 +8,15 @@ type BaseProps = {
 
 type ButtonAsLink = BaseProps & {
   href: string
+  /** Open in a new tab, e.g. for PDFs or other sites */
+  external?: boolean
   onClick?: never
   type?: never
 }
 
 type ButtonAsButton = BaseProps & {
   href?: never
+  external?: never
   onClick?: () => void
   type?: 'button' | 'submit' | 'reset'
 }
@@ -34,10 +37,24 @@ export default function Button({
   children,
   className = '',
   href,
+  external,
   onClick,
   type = 'button',
 }: ButtonProps) {
   const classes = `${base} ${variantClasses[variant]} ${className}`
+
+  if (href && external) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={classes}
+      >
+        {children}
+      </a>
+    )
+  }
 
   if (href) {
     return (

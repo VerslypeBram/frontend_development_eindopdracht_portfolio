@@ -16,6 +16,10 @@ export interface SocialLink {
 
 export interface SiteSettings {
   title: string
+  availability?: string
+  email?: string
+  /** Public URL of the uploaded CV PDF */
+  cvUrl?: string
   navLinks?: NavLink[]
   socialLinks?: SocialLink[]
   footerText?: string
@@ -26,6 +30,9 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
     const { data } = await sanityFetch({
       query: `*[_type == "siteSettings"][0]{
         title,
+        availability,
+        email,
+        "cvUrl": cvFile.asset->url,
         navLinks,
         socialLinks,
         footerText

@@ -3,6 +3,8 @@ import type { NavLink, SocialLink } from './settings'
 // Fallbacks used when the Site Settings document in Sanity is empty.
 // The CMS is the single source of truth; keep these in sync with it.
 
+export const DEFAULT_EMAIL = 'bram.verslype@student.howest.be'
+
 export const DEFAULT_NAV_LINKS: NavLink[] = [
   { href: '#about', label: 'About Me' },
   { href: '#skills', label: 'Expertise' },
