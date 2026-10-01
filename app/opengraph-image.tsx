@@ -39,12 +39,23 @@ export default function OpengraphImage() {
       <div
         style={{
           display: 'flex',
+          alignItems: 'flex-end',
           fontSize: 96,
           fontWeight: 800,
           marginTop: 24,
         }}
       >
         Bram Verslype
+        <div
+          style={{
+            width: 52,
+            height: 14,
+            marginLeft: 14,
+            marginBottom: 14,
+            borderRadius: 3,
+            background: '#f59e0b',
+          }}
+        />
       </div>
       <div
         style={{

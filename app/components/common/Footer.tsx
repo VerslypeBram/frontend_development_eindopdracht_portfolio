@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import CurrentYear from './CurrentYear'
+import Logo from './Logo'
 import FadeIn from './FadeIn'
 import { DEFAULT_NAV_LINKS, resolveSocialLinks } from '@/app/lib/constants'
 import type { NavLink, SocialLink } from '@/app/lib/settings'
@@ -29,7 +30,7 @@ export default function Footer({
                 href="/"
                 className="font-heading text-2xl font-bold tracking-tight text-neutral-900 dark:text-white"
               >
-                Bram Verslype
+                <Logo />
               </Link>
               <p className="max-w-xs text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
                 {footerText ||
