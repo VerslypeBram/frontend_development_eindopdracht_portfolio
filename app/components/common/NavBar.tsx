@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import ThemeToggle from './ThemeToggle'
+import Logo from './Logo'
 import { DEFAULT_NAV_LINKS } from '@/app/lib/constants'
 import type { NavLink } from '@/app/lib/settings'
 import { useState, useEffect } from 'react'
@@ -61,7 +62,7 @@ export default function NavBar({ navLinks }: NavBarProps) {
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="font-heading text-xl font-bold tracking-tight text-neutral-900 md:text-2xl dark:text-white"
         >
-          Bram Verslype
+          <Logo />
         </Link>
 
         {/* Desktop Navigation & Actions */}
