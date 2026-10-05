@@ -7,7 +7,7 @@ export default function ProjectLayout({
 }) {
   return (
     <ShellProviders>
-      <main id="main" className="flex-1">
+      <main id="main" className="flex-1 pt-[env(safe-area-inset-top)]">
         {children}
       </main>
     </ShellProviders>
