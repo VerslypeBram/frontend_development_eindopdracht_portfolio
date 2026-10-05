@@ -39,6 +39,8 @@ const iconMap: Record<string, string> = {
   'framer motion': 'simple-icons:framer',
   sanity: 'devicon-plain:sanity',
   vercel: 'simple-icons:vercel',
+  flutter: 'devicon-plain:flutter',
+  dart: 'devicon-plain:dart',
 }
 
 export default function SkillIcon({ name }: { name: string }) {
