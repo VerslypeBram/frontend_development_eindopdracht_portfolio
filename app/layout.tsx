@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Space_Grotesk } from 'next/font/google'
 import localFont from 'next/font/local'
 import '@/env'
@@ -24,6 +24,17 @@ const satoshi = localFont({
 const SITE_TITLE = 'Bram Verslype — Web Developer & MCT Student'
 const SITE_DESCRIPTION =
   'Portfolio of Bram Verslype, Multimedia & Creative Technology student (Next Web Developer) at Howest, Kortrijk. Looking for a web development internship from 15 February to 4 June 2027 in the Kortrijk area. Projects in React, Next.js and IoT.'
+
+// viewport-fit=cover lets the page draw behind the iPhone status bar and
+// notch; the header and project pages pad themselves with the safe-area
+// insets so nothing important ends up underneath.
+export const viewport: Viewport = {
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#fafafa' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
+  ],
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
