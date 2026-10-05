@@ -53,7 +53,7 @@ export default function NavBar({ navLinks }: NavBarProps) {
 
   return (
     <header
-      className={`sticky top-0 z-50 flex w-full flex-col items-center justify-center transition-all duration-300 ${isScrolled || mobileOpen ? 'border-b border-neutral-200/50 bg-white/70 shadow-sm backdrop-blur-md dark:border-neutral-800 dark:bg-neutral-950/70 dark:shadow-neutral-950/50' : 'border-b border-transparent bg-transparent'}`}
+      className={`sticky top-0 z-50 flex w-full flex-col items-center justify-center transition-all duration-300 ${isScrolled || mobileOpen ? 'border-b border-neutral-200/50 bg-white/95 shadow-sm backdrop-blur-md md:bg-white/70 dark:border-neutral-800 dark:bg-neutral-950/95 dark:shadow-neutral-950/50 md:dark:bg-neutral-950/70' : 'border-b border-transparent bg-transparent'}`}
     >
       <div className="flex h-16 w-full max-w-6xl items-center justify-between px-4 md:h-20 md:px-6">
         {/* Logo / Name */}
