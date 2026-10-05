@@ -27,6 +27,20 @@ const iconMap: Record<string, string> = {
   'c# / .net': 'devicon-plain:dot-net',
   azure: 'devicon-plain:azure',
   'microsoft azure': 'devicon-plain:azure',
+  'asp.net core': 'devicon-plain:dotnetcore',
+  mysql: 'devicon-plain:mysql',
+  graphql: 'devicon-plain:graphql',
+  grpc: 'devicon-plain:grpc',
+  'socket.io': 'simple-icons:socketdotio',
+  'raspberry pi': 'devicon-plain:raspberrypi',
+  arduino: 'devicon-plain:arduino',
+  'c++': 'devicon-plain:cplusplus',
+  vite: 'devicon-plain:vitejs',
+  'framer motion': 'simple-icons:framer',
+  sanity: 'devicon-plain:sanity',
+  vercel: 'simple-icons:vercel',
+  flutter: 'devicon-plain:flutter',
+  dart: 'devicon-plain:dart',
 }
 
 export default function SkillIcon({ name }: { name: string }) {
