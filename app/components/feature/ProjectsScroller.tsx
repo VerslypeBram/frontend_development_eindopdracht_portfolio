@@ -36,7 +36,7 @@ function ProjectCard({
             fill
             sizes="(max-width: 768px) min(calc(100vw - 2rem), 320px), 384px"
             quality={80}
-            className="object-cover transition-transform duration-500 group-hover/card:scale-105"
+            className="object-cover transition-transform duration-500 motion-safe:group-hover/card:scale-105"
           />
         </div>
       )}
@@ -53,24 +53,17 @@ function ProjectCard({
           <div className="mt-5 flex flex-wrap gap-2">
             {project.tags.map((tag, i) => {
               if (!tag) return null
-              return (
-                <Tag
-                  key={`${tag}-${i}`}
-                  className="cursor-default transition-all duration-200 hover:scale-[1.04] hover:border-amber-400 dark:hover:border-amber-500"
-                >
-                  {tag}
-                </Tag>
-              )
+              return <Tag key={`${tag}-${i}`}>{tag}</Tag>
             })}
           </div>
         )}
 
         {project.slug && (
           <span className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-amber-700 dark:text-amber-500">
-            View project
+            View Project
             <ArrowRight
               aria-hidden="true"
-              className="h-4 w-4 transition-transform duration-200 group-hover/card:translate-x-1"
+              className="h-4 w-4 transition-transform duration-200 motion-safe:group-hover/card:translate-x-1"
             />
           </span>
         )}
@@ -151,6 +144,8 @@ export default function ProjectsScroller({ projects }: Props) {
       {/* Scrollable row */}
       <div
         ref={scrollRef}
+        role="region"
+        aria-label="Projects"
         className="flex snap-x snap-mandatory scroll-pl-4 gap-4 overflow-x-auto scroll-smooth px-4 pt-2 pb-4 [scrollbar-width:none] md:scroll-pl-16 md:gap-8 md:px-16 [&::-webkit-scrollbar]:hidden"
       >
         {projects.map((project, i) => (

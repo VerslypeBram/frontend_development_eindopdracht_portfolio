@@ -113,7 +113,7 @@ export default function FanPhotoCarousel({
               className="flex h-11 w-11 items-center justify-center"
             >
               <span
-                className={`block h-2 rounded-full transition-all duration-300 ${i === activeIndex ? 'w-4 bg-amber-500' : 'w-2 bg-neutral-300 hover:bg-amber-400 dark:bg-neutral-600'}`}
+                className={`block h-2 rounded-full transition-[width,background-color] duration-300 ${i === activeIndex ? 'w-4 bg-amber-500' : 'w-2 bg-neutral-300 hover:bg-amber-400 dark:bg-neutral-600'}`}
               />
             </button>
           ))}

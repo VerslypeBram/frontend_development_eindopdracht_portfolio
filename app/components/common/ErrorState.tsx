@@ -16,16 +16,16 @@ export default function ErrorState({ error, reset, message }: ErrorStateProps) {
 
   return (
     <div className="flex min-h-[50vh] flex-col items-center justify-center gap-4 px-4 text-center">
-      <h2 className="text-2xl font-bold">Oops, something went wrong!</h2>
+      <h1 className="text-2xl font-bold">Oops, Something Went Wrong!</h1>
       <p className="max-w-md text-neutral-600 dark:text-neutral-300">
         {message}
       </p>
       <button
         type="button"
         onClick={() => reset()}
-        className="mt-4 rounded-md bg-amber-500 px-6 py-2 font-semibold text-neutral-950 transition-colors hover:bg-amber-400 focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:outline-none"
+        className="mt-4 rounded-md bg-amber-500 px-6 py-2 font-semibold text-neutral-950 transition-colors hover:bg-amber-400 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:outline-none"
       >
-        Try again
+        Try Again
       </button>
     </div>
   )

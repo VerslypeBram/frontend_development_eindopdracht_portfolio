@@ -33,7 +33,7 @@ export default async function SkillsSection() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {data.skillCategories?.map((category, index) => (
             <FadeIn key={category.name} delay={index * 0.1} amount={0.1}>
-              <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-transform duration-300 hover:-translate-y-2 hover:border-amber-500 dark:border-white/10 dark:bg-white/5 dark:hover:border-amber-500">
+              <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-transform duration-300 hover:border-amber-500 motion-safe:hover:-translate-y-2 dark:border-white/10 dark:bg-white/5 dark:hover:border-amber-500">
                 <div className="mb-2 flex items-center gap-2">
                   <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-amber-500" />
                   <h3 className="font-heading text-lg font-bold text-neutral-900 dark:text-white">
@@ -47,10 +47,7 @@ export default async function SkillsSection() {
                 )}
                 <div className="grid grid-cols-2 gap-2">
                   {category.skills?.map(skill => (
-                    <Tag
-                      key={skill}
-                      className="flex cursor-default items-center gap-2 transition-all duration-200 hover:scale-[1.04] hover:border-amber-400 dark:hover:border-amber-500"
-                    >
+                    <Tag key={skill} className="flex items-center gap-2">
                       <SkillIcon name={skill} />
                       {skill}
                     </Tag>

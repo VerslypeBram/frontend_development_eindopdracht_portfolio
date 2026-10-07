@@ -5,11 +5,13 @@
 :root {
   --background: #fafafa;
   --foreground: #171717;
+  color-scheme: light;
 }
 
 .dark {
   --background: #0a0a0a;
   --foreground: #ededed;
+  color-scheme: dark;
 }
 
 @theme {
@@ -46,6 +48,23 @@ body::before {
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
   opacity: 0.025;
+}
+
+/*
+ * Hero fills exactly the first screen below the sticky header (4rem on
+ * mobile, 5rem from md up, plus the iPhone status bar). dvh follows the
+ * mobile browser toolbar; the vh line is the fallback.
+ */
+.min-h-hero {
+  min-height: calc(100vh - 4rem - env(safe-area-inset-top));
+  min-height: calc(100dvh - 4rem - env(safe-area-inset-top));
+}
+
+@media (min-width: 768px) {
+  .min-h-hero {
+    min-height: calc(100vh - 5rem - env(safe-area-inset-top));
+    min-height: calc(100dvh - 5rem - env(safe-area-inset-top));
+  }
 }
 
 /* Hide custom cursor on touch devices (default hidden) */
@@ -96,6 +115,28 @@ section {
 
 @media (prefers-reduced-motion: reduce) {
   .logo-cursor {
+    animation: none;
+  }
+}
+
+/*
+ * Availability dot pulse: four pulses (4 s) and then it rests, so nothing
+ * loops next to the content for more than five seconds (WCAG 2.2.2).
+ */
+@keyframes availability-ping {
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.availability-ping {
+  animation: availability-ping 1s cubic-bezier(0, 0, 0.2, 1) 4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .availability-ping {
     animation: none;
   }
 }

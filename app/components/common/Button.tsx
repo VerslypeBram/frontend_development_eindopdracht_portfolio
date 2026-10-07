@@ -30,7 +30,7 @@ const variantClasses: Record<NonNullable<BaseProps['variant']>, string> = {
 }
 
 const base =
-  'group inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all hover:shadow-lg hover:-translate-y-0.5'
+  'group inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-[transform,box-shadow] hover:shadow-lg motion-safe:hover:-translate-y-0.5'
 
 export default function Button({
   variant = 'primary',

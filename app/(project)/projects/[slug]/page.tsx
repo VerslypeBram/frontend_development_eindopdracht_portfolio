@@ -74,15 +74,15 @@ export default async function ProjectPage({
   if (!project) notFound()
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
+    <div className="min-h-dvh bg-neutral-50 dark:bg-neutral-950">
       <div className="mx-auto max-w-6xl px-4 py-8 md:px-6 md:py-10">
         {/* Back button */}
         <Link
           href="/#projects"
-          className="mb-4 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 shadow-sm transition-all duration-200 hover:border-amber-500 dark:border-white/10 dark:bg-white/5 dark:text-neutral-300 dark:hover:border-amber-500"
+          className="mb-4 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 shadow-sm transition-colors duration-200 hover:border-amber-500 dark:border-white/10 dark:bg-white/5 dark:text-neutral-300 dark:hover:border-amber-500"
         >
           <ArrowLeft aria-hidden="true" className="h-4 w-4" />
-          Back to projects
+          Back to Projects
         </Link>
 
         {/* Hero image */}
@@ -111,7 +111,7 @@ export default async function ProjectPage({
             <p className="mb-2 text-sm font-semibold tracking-wider text-amber-400 uppercase">
               Project
             </p>
-            <h1 className="font-heading text-2xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl">
+            <h1 className="font-heading text-2xl font-bold text-balance text-white sm:text-4xl md:text-5xl lg:text-6xl">
               {project.title}
             </h1>
           </div>
@@ -163,10 +163,10 @@ export default async function ProjectPage({
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-amber-500 px-6 py-3 text-sm font-semibold text-neutral-950 transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-400 hover:shadow-lg"
+                      className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-amber-500 px-6 py-3 text-sm font-semibold text-neutral-950 transition-[transform,background-color,box-shadow] duration-200 hover:bg-amber-400 hover:shadow-lg motion-safe:hover:-translate-y-0.5"
                     >
                       <ExternalLink aria-hidden="true" className="h-4 w-4" />
-                      View live
+                      View Live
                     </a>
                   )}
 
@@ -175,7 +175,7 @@ export default async function ProjectPage({
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-neutral-300 px-6 py-3 text-sm font-semibold text-neutral-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-neutral-900 hover:shadow-lg dark:border-white/20 dark:text-white dark:hover:border-white"
+                      className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-neutral-300 px-6 py-3 text-sm font-semibold text-neutral-900 transition-[transform,border-color,box-shadow] duration-200 hover:border-neutral-900 hover:shadow-lg motion-safe:hover:-translate-y-0.5 dark:border-white/20 dark:text-white dark:hover:border-white"
                     >
                       <StaticIcon
                         icon="simple-icons:github"

@@ -1,6 +1,6 @@
 export function HeroSkeleton() {
   return (
-    <section className="relative mx-auto flex min-h-screen w-full max-w-6xl animate-pulse flex-col items-center justify-center gap-16 px-6 md:flex-row">
+    <section className="min-h-hero relative mx-auto flex w-full max-w-6xl animate-pulse flex-col items-center justify-center gap-16 px-6 md:flex-row">
       <div className="flex w-full flex-1 flex-col items-start gap-6">
         <div className="h-4 w-32 rounded bg-gray-200 dark:bg-gray-800"></div>
         <div className="h-16 w-3/4 rounded bg-gray-200 dark:bg-gray-800"></div>

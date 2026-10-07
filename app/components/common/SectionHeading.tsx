@@ -16,7 +16,7 @@ export default function SectionHeading({
         {eyebrow}
       </p>
       <h2
-        className={`font-heading text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl dark:text-white ${className}`}
+        className={`font-heading text-4xl font-bold tracking-tight text-balance text-neutral-900 md:text-5xl dark:text-white ${className}`}
       >
         {title}
       </h2>
