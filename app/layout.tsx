@@ -70,7 +70,10 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body className="flex min-h-full flex-col font-sans antialiased">
-        <a href="#main" className="sr-only focus:not-sr-only">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-[calc(env(safe-area-inset-top)+0.5rem)] focus:left-4 focus:z-[10000] focus:rounded-lg focus:bg-amber-500 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-neutral-950 focus:outline-2 focus:outline-offset-2 focus:outline-neutral-900 dark:focus:outline-white"
+        >
           Skip to content
         </a>
         {children}

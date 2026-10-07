@@ -26,7 +26,7 @@ export default async function ContactSection() {
         <FadeIn className="mb-10 text-center">
           <SectionHeading
             eyebrow="Contact"
-            title={"Let's Work Together"}
+            title="Let’s Work Together"
             className="mb-6"
           />
           {settings?.availability && (
@@ -36,7 +36,7 @@ export default async function ContactSection() {
           )}
           <p className="mx-auto max-w-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
             Looking for a motivated web development intern, or have a project in
-            mind? I&apos;d love to hear from you.
+            mind? I&rsquo;d love to hear from you.
           </p>
 
           {/* Address as visible text: the mailto button does nothing for
@@ -53,7 +53,7 @@ export default async function ContactSection() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Button href={`mailto:${email}`}>
               <Mail size={16} aria-hidden="true" />
-              Email me
+              Email Me
             </Button>
             {settings?.cvUrl && (
               <Button href={settings.cvUrl} external variant="outline">
@@ -78,7 +78,7 @@ export default async function ContactSection() {
               rel="noopener noreferrer"
               // Accessible name includes the visible handle (WCAG 2.5.3)
               aria-label={handle ? `${platform}: ${handle}` : platform}
-              className="group flex items-center gap-3 rounded-xl border border-neutral-200 bg-white px-5 py-3 text-neutral-600 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500 hover:text-neutral-900 dark:border-white/10 dark:bg-white/3 dark:text-neutral-300 dark:hover:border-amber-500 dark:hover:text-white"
+              className="group flex items-center gap-3 rounded-xl border border-neutral-200 bg-white px-5 py-3 text-neutral-600 shadow-sm transition-[transform,border-color,color] duration-300 hover:border-amber-500 hover:text-neutral-900 motion-safe:hover:-translate-y-0.5 dark:border-white/10 dark:bg-white/3 dark:text-neutral-300 dark:hover:border-amber-500 dark:hover:text-white"
             >
               {icon && <StaticIcon icon={icon} width={18} height={18} />}
               <span className="hidden text-sm font-medium sm:block">

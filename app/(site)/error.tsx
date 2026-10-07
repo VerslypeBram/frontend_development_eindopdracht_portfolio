@@ -9,7 +9,7 @@ export default function Error(props: {
   return (
     <ErrorState
       {...props}
-      message="We couldn't fetch the data. Please try again or come back later."
+      message="We couldn’t fetch the data. Please try again or come back later."
     />
   )
 }

@@ -123,14 +123,45 @@ export default function HeroSectionClient({
 
   const prefersReducedMotion = useReducedMotion()
 
+  // Section bounds in page coordinates, measured on mount and when the
+  // section resizes, so mousemove never has to force a layout read
+  const boundsRef = useRef<{
+    left: number
+    top: number
+    width: number
+    height: number
+  } | null>(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+    const measure = () => {
+      const rect = section.getBoundingClientRect()
+      boundsRef.current = {
+        left: rect.left + window.scrollX,
+        top: rect.top + window.scrollY,
+        width: rect.width,
+        height: rect.height,
+      }
+    }
+    measure()
+    const observer = new ResizeObserver(measure)
+    observer.observe(section)
+    window.addEventListener('resize', measure)
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', measure)
+    }
+  }, [])
+
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
       // No 3D tilt for users who prefer reduced motion
       if (prefersReducedMotion) return
-      const rect = sectionRef.current?.getBoundingClientRect()
-      if (!rect) return
-      rawX.set((e.clientX - rect.left) / rect.width - 0.5)
-      rawY.set((e.clientY - rect.top) / rect.height - 0.5)
+      const bounds = boundsRef.current
+      if (!bounds) return
+      rawX.set((e.pageX - bounds.left) / bounds.width - 0.5)
+      rawY.set((e.pageY - bounds.top) / bounds.height - 0.5)
     },
     [rawX, rawY, prefersReducedMotion],
   )
@@ -145,9 +176,9 @@ export default function HeroSectionClient({
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-screen w-full overflow-hidden"
+      className="min-h-hero relative w-full overflow-hidden"
     >
-      <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center gap-10 px-4 md:flex-row md:gap-16 md:px-6">
+      <div className="min-h-hero relative mx-auto flex max-w-6xl flex-col items-center justify-center gap-10 px-4 md:flex-row md:gap-16 md:px-6">
         {/* Text column: stagger over children */}
         <motion.div
           className="flex flex-1 flex-col items-start gap-6"
@@ -172,9 +203,9 @@ export default function HeroSectionClient({
 
           <motion.h1
             variants={textItem}
-            className="font-heading text-4xl leading-tight font-bold text-neutral-900 sm:text-5xl md:text-6xl dark:text-white"
+            className="font-heading text-4xl leading-tight font-bold text-balance text-neutral-900 sm:text-5xl md:text-6xl dark:text-white"
           >
-            Hi, I&apos;m{' '}
+            Hi, I&rsquo;m{' '}
             {/* Full name in the server HTML for SEO and screen readers;
                 the typewriter is a visual-only effect. */}
             <span className="sr-only">{hero.name}</span>
@@ -203,7 +234,7 @@ export default function HeroSectionClient({
               View My Work{' '}
               <ArrowRight
                 size={16}
-                className="transition-transform duration-200 group-hover:translate-x-2"
+                className="transition-transform duration-200 motion-safe:group-hover:translate-x-2"
               />
             </Button>
             {cvUrl ? (
@@ -248,7 +279,7 @@ export default function HeroSectionClient({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-neutral-600 transition-colors duration-300 hover:text-amber-500 dark:text-neutral-300 dark:hover:text-amber-500"
+          className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 text-neutral-600 transition-colors duration-300 hover:text-amber-500 md:block dark:text-neutral-300 dark:hover:text-amber-500"
           aria-label="Scroll to About Me"
         >
           <motion.div

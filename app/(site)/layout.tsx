@@ -16,7 +16,7 @@ export default async function SiteLayout({
   return (
     <ShellProviders>
       {isDraftMode && (
-        <div className="fixed top-0 right-0 left-0 z-50 flex items-center justify-center gap-4 bg-amber-500 px-4 pt-[calc(env(safe-area-inset-top)+0.5rem)] pb-2 text-sm font-semibold text-black">
+        <div className="relative flex items-center justify-center gap-4 bg-amber-500 px-4 pt-[calc(env(safe-area-inset-top)+0.5rem)] pb-2 text-sm font-semibold text-black">
           <span>Draft mode active</span>
           <a
             href="/api/draft/disable"

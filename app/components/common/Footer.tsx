@@ -20,7 +20,7 @@ export default function Footer({
   const socials = resolveSocialLinks(socialLinks)
 
   return (
-    <footer className="bg-background w-full pt-12 pb-0 transition-colors">
+    <footer className="bg-background w-full pt-12 pb-[max(1.5rem,env(safe-area-inset-bottom))] transition-colors">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <FadeIn>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8">
@@ -28,7 +28,7 @@ export default function Footer({
             <div className="flex flex-col gap-4">
               <Link
                 href="/"
-                className="font-heading text-2xl font-bold tracking-tight text-neutral-900 dark:text-white"
+                className="font-heading inline-flex min-h-11 items-center self-start text-2xl font-bold tracking-tight text-neutral-900 dark:text-white"
               >
                 <Logo />
               </Link>
@@ -43,12 +43,12 @@ export default function Footer({
               <h2 className="text-sm font-semibold tracking-wider text-neutral-900 uppercase dark:text-white">
                 Navigation
               </h2>
-              <ul className="flex flex-col gap-2">
+              <ul className="flex flex-col md:gap-2">
                 {links.map(link => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-neutral-600 decoration-amber-500 underline-offset-4 transition-colors hover:text-neutral-900 hover:underline hover:decoration-2 dark:text-neutral-300 dark:hover:text-white"
+                      className="inline-flex min-h-11 items-center text-sm text-neutral-600 decoration-amber-500 underline-offset-4 transition-colors hover:text-neutral-900 hover:underline hover:decoration-2 md:min-h-0 dark:text-neutral-300 dark:hover:text-white"
                     >
                       {link.label}
                     </Link>
@@ -62,14 +62,14 @@ export default function Footer({
               <h2 className="text-sm font-semibold tracking-wider text-neutral-900 uppercase dark:text-white">
                 Connect
               </h2>
-              <ul className="flex flex-col gap-2">
+              <ul className="flex flex-col md:gap-2">
                 {socials.map(link => (
                   <li key={link.url}>
                     <a
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-neutral-600 decoration-amber-500 underline-offset-4 transition-colors hover:text-neutral-900 hover:underline hover:decoration-2 dark:text-neutral-300 dark:hover:text-white"
+                      className="inline-flex min-h-11 items-center text-sm text-neutral-600 decoration-amber-500 underline-offset-4 transition-colors hover:text-neutral-900 hover:underline hover:decoration-2 md:min-h-0 dark:text-neutral-300 dark:hover:text-white"
                     >
                       {link.platform}
                     </a>
@@ -82,7 +82,7 @@ export default function Footer({
 
         <FadeIn delay={0.2}>
           <div className="mt-12 flex items-center justify-center border-t border-neutral-100 pt-8 text-center dark:border-neutral-900">
-            <p className="text-xs text-neutral-500 dark:text-neutral-500">
+            <p className="text-xs text-neutral-600 dark:text-neutral-400">
               © <CurrentYear /> Bram Verslype. Built with Next.js and Tailwind.
             </p>
           </div>

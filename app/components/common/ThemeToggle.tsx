@@ -18,7 +18,7 @@ export default function ThemeToggle() {
   if (!mounted || !resolvedTheme) {
     return (
       <button
-        className="invisible rounded-full border border-neutral-200 p-2.5 transition-all dark:border-neutral-800"
+        className="invisible rounded-full border border-neutral-200 p-2.5 dark:border-neutral-800"
         aria-label="Theme Toggle loading"
         disabled
       >
@@ -33,7 +33,8 @@ export default function ThemeToggle() {
     <button
       onClick={() => setTheme(currentTheme === 'dark' ? 'light' : 'dark')}
       className="relative overflow-hidden rounded-full border border-neutral-200 p-2.5 text-neutral-500 transition-colors hover:border-neutral-300 hover:text-neutral-900 dark:border-neutral-800 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:text-white"
-      aria-label="Toggle Dark Mode"
+      aria-label="Dark mode"
+      aria-pressed={currentTheme === 'dark'}
     >
       <AnimatePresence mode="wait" initial={false}>
         {currentTheme === 'dark' ? (

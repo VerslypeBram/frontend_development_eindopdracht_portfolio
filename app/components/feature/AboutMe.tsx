@@ -46,7 +46,7 @@ export default async function AboutMe() {
 
           {/* Right Column - Large Card with Text */}
           <FadeIn delay={0.2} className="w-full lg:w-1/2">
-            <div className="flex flex-col rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-transform duration-300 hover:-translate-y-2 hover:border-amber-500 md:p-8 lg:p-10 dark:border-white/10 dark:bg-white/5 dark:hover:border-amber-500">
+            <div className="flex flex-col rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-transform duration-300 hover:border-amber-500 motion-safe:hover:-translate-y-2 md:p-8 lg:p-10 dark:border-white/10 dark:bg-white/5 dark:hover:border-amber-500">
               {data.subHeading && (
                 <div className="font-heading mb-4 text-xl leading-snug font-bold text-neutral-800 md:text-2xl dark:text-white [&_span]:text-amber-700 dark:[&_span]:text-amber-500">
                   <PortableText value={data.subHeading} />
