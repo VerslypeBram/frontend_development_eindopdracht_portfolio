@@ -1,0 +1,419 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-07T07:11:35+00:00",
+  "title": "Design System: Bram Verslype Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "signal-amber": {
+        "role": "primary",
+        "displayName": "Signal Amber",
+        "canonical": "#f59e0b",
+        "tonalRamp": [
+          "#78350f",
+          "#92400e",
+          "#b45309",
+          "#d97706",
+          "#f59e0b",
+          "#fbbf24",
+          "#fcd34d",
+          "#fef3c7"
+        ]
+      },
+      "signal-amber-hover": {
+        "role": "primary",
+        "displayName": "Signal Amber Hover",
+        "canonical": "#fbbf24",
+        "tonalRamp": [
+          "#78350f",
+          "#92400e",
+          "#b45309",
+          "#d97706",
+          "#f59e0b",
+          "#fbbf24",
+          "#fcd34d",
+          "#fef3c7"
+        ]
+      },
+      "amber-ink": {
+        "role": "primary",
+        "displayName": "Amber Ink",
+        "canonical": "#b45309",
+        "tonalRamp": [
+          "#78350f",
+          "#92400e",
+          "#b45309",
+          "#d97706",
+          "#f59e0b",
+          "#fbbf24",
+          "#fcd34d",
+          "#fef3c7"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#fafafa",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a3a3a3",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "mist": {
+        "role": "neutral",
+        "displayName": "Mist",
+        "canonical": "#f5f5f5",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a3a3a3",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#e5e5e5",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a3a3a3",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#171717",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a3a3a3",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Ink Soft",
+        "canonical": "#525252",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a3a3a3",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "night": {
+        "role": "neutral",
+        "displayName": "Night",
+        "canonical": "#0a0a0a",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a3a3a3",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "chalk": {
+        "role": "neutral",
+        "displayName": "Chalk",
+        "canonical": "#ededed",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a3a3a3",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "steel": {
+        "role": "neutral",
+        "displayName": "Steel",
+        "canonical": "#d4d4d4",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#171717",
+          "#262626",
+          "#404040",
+          "#737373",
+          "#a3a3a3",
+          "#e5e5e5",
+          "#fafafa"
+        ]
+      },
+      "status-green": {
+        "role": "status",
+        "displayName": "Status Green",
+        "canonical": "#10b981",
+        "tonalRamp": [
+          "#022c22",
+          "#064e3b",
+          "#065f46",
+          "#047857",
+          "#10b981",
+          "#6ee7b7",
+          "#a7f3d0",
+          "#ecfdf5"
+        ]
+      },
+      "status-green-ink": {
+        "role": "status",
+        "displayName": "Status Green Ink",
+        "canonical": "#065f46",
+        "tonalRamp": [
+          "#022c22",
+          "#064e3b",
+          "#065f46",
+          "#047857",
+          "#10b981",
+          "#6ee7b7",
+          "#a7f3d0",
+          "#ecfdf5"
+        ]
+      },
+      "status-green-wash": {
+        "role": "status",
+        "displayName": "Status Green Wash",
+        "canonical": "#ecfdf5",
+        "tonalRamp": [
+          "#022c22",
+          "#064e3b",
+          "#065f46",
+          "#047857",
+          "#10b981",
+          "#6ee7b7",
+          "#a7f3d0",
+          "#ecfdf5"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero heading and project page title."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card and category titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Paragraphs and UI text."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase eyebrows and the hero tagline."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-rest",
+        "value": "0 1px 2px 0 rgba(0,0,0,0.05)",
+        "purpose": "Cards, social links, scrolled header."
+      },
+      {
+        "name": "control",
+        "value": "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)",
+        "purpose": "Project scroller arrows."
+      },
+      {
+        "name": "hover-lift",
+        "value": "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)",
+        "purpose": "Buttons and links on hover, paired with a 2px upward move."
+      },
+      {
+        "name": "image",
+        "value": "0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)",
+        "purpose": "Hero, carousel and project photos."
+      }
+    ],
+    "motion": [
+      {
+        "name": "fade-in",
+        "value": "0.5s ease-out, translateY(24px) to 0, once on scroll into view",
+        "purpose": "Section content entrance."
+      },
+      {
+        "name": "card-lift",
+        "value": "300ms, translateY(-8px)",
+        "purpose": "Large cards on hover (motion-safe only)."
+      },
+      {
+        "name": "button-lift",
+        "value": "200ms, translateY(-2px)",
+        "purpose": "Buttons and links on hover (motion-safe only)."
+      },
+      {
+        "name": "spring-ui",
+        "value": "spring stiffness 300, damping 28 (cursor ring); 380/30 (nav underline)",
+        "purpose": "Cursor ring size and nav underline slide."
+      },
+      {
+        "name": "typewriter",
+        "value": "55ms per character after a 0.5s delay",
+        "purpose": "Hero name; skipped under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main homepage action (View My Work, Email Me); inverts in dark theme.",
+      "html": "<button class=\"ds-btn-primary\">View My Work</button>",
+      "css": ".ds-btn-primary{background:#171717;color:#fafafa;padding:12px 24px;border:0;border-radius:8px;font:600 14px 'Satoshi', ui-sans-serif, system-ui, sans-serif;cursor:pointer;transition:transform .2s,box-shadow .2s}.ds-btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1)}.ds-btn-primary:focus-visible{outline:2px solid #f59e0b;outline-offset:2px}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action (Download CV).",
+      "html": "<button class=\"ds-btn-outline\">Download CV</button>",
+      "css": ".ds-btn-outline{background:transparent;color:#171717;padding:12px 24px;border:1px solid #d4d4d4;border-radius:8px;font:600 14px 'Satoshi', ui-sans-serif, system-ui, sans-serif;cursor:pointer;transition:transform .2s,box-shadow .2s}.ds-btn-outline:hover{transform:translateY(-2px);box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1)}.ds-btn-outline:focus-visible{outline:2px solid #f59e0b;outline-offset:2px}"
+    },
+    {
+      "name": "Accent Button",
+      "kind": "button",
+      "refersTo": "button-accent",
+      "description": "Filled amber call to action on project pages (View Live).",
+      "html": "<a class=\"ds-btn-accent\" href=\"#\">View Live</a>",
+      "css": ".ds-btn-accent{display:inline-flex;align-items:center;gap:8px;min-height:44px;background:#f59e0b;color:#0a0a0a;padding:12px 24px;border-radius:8px;text-decoration:none;font:600 14px 'Satoshi', ui-sans-serif, system-ui, sans-serif;transition:transform .2s,background-color .2s,box-shadow .2s}.ds-btn-accent:hover{background:#fbbf24;transform:translateY(-2px);box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1)}.ds-btn-accent:focus-visible{outline:2px solid #0a0a0a;outline-offset:2px}"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Non-interactive technology chip.",
+      "html": "<span class=\"ds-tag\">Next.js</span>",
+      "css": ".ds-tag{display:inline-block;background:#f5f5f5;color:#404040;border:1px solid #e5e5e5;border-radius:8px;padding:6px 12px;font:500 14px 'Satoshi', ui-sans-serif, system-ui, sans-serif}"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Project, skill and about container; lifts and turns the border amber on hover.",
+      "html": "<article class=\"ds-card\"><h3>Project title</h3><p>One short description of the project and what it does.</p></article>",
+      "css": ".ds-card{background:#fff;border:1px solid #e5e5e5;border-radius:16px;padding:32px;box-shadow:0 1px 2px rgba(0,0,0,.05);max-width:320px;transition:transform .3s,border-color .3s}.ds-card:hover{transform:translateY(-8px);border-color:#f59e0b}.ds-card h3{margin:0 0 12px;font:700 24px/1.375 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;color:#262626}.ds-card p{margin:0;font:400 16px/1.625 'Satoshi', ui-sans-serif, system-ui, sans-serif;color:#525252}"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Header link with the sliding amber underline on the active section.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#\">About Me</a><a class=\"ds-nav-link is-active\" href=\"#\">Expertise</a><a class=\"ds-nav-link\" href=\"#\">My Work</a></nav>",
+      "css": ".ds-nav{display:flex;gap:24px}.ds-nav-link{position:relative;padding-bottom:4px;color:#525252;text-decoration:none;font:500 16px 'Satoshi', ui-sans-serif, system-ui, sans-serif;transition:color .2s}.ds-nav-link:hover,.ds-nav-link.is-active{color:#171717}.ds-nav-link.is-active::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:9999px;background:#f59e0b}.ds-nav-link:focus-visible{outline:2px solid #f59e0b;outline-offset:4px}"
+    },
+    {
+      "name": "Availability Badge",
+      "kind": "custom",
+      "refersTo": "availability-badge",
+      "description": "Green pill with a dot that pulses four times and then rests.",
+      "html": "<p class=\"ds-badge\"><span class=\"ds-dot\"></span>Looking for an internship · Feb–Jun 2027</p>",
+      "css": ".ds-badge{display:inline-flex;align-items:center;gap:8px;margin:0;background:#ecfdf5;color:#065f46;border:1px solid rgba(5,150,105,.3);border-radius:9999px;padding:4px 12px;font:500 14px 'Satoshi', ui-sans-serif, system-ui, sans-serif}.ds-dot{width:8px;height:8px;border-radius:9999px;background:#10b981;animation:ds-ping 1s cubic-bezier(0,0,.2,1) 4}@keyframes ds-ping{75%,100%{transform:scale(2);opacity:0}}@media (prefers-reduced-motion:reduce){.ds-dot{animation:none}}"
+    },
+    {
+      "name": "Wordmark",
+      "kind": "custom",
+      "refersTo": "wordmark",
+      "description": "Lowercase name with the amber terminal cursor; the cursor blinks four times and rests.",
+      "html": "<span class=\"ds-logo\">bram verslype<span class=\"ds-logo-cursor\"></span></span>",
+      "css": ".ds-logo{display:inline-flex;align-items:flex-end;font:700 24px 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;letter-spacing:-.025em;color:#171717}.ds-logo-cursor{display:inline-block;width:.55em;height:.14em;margin:0 0 .2em .12em;border-radius:1px;background:#f59e0b;animation:ds-blink 1.1s steps(1,end) 4}@keyframes ds-blink{0%,49%{opacity:1}50%,100%{opacity:0}}@media (prefers-reduced-motion:reduce){.ds-logo-cursor{animation:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Warm Signal",
+    "overview": "The surfaces are quiet: paper-white and near-black, soft neutral cards, generous space. One amber accent carries every signal: the cursor on the wordmark, the active nav underline, hover borders, the scroll progress line, and the primary call to action on the project page. When something is amber, it is where the visitor should look or act. The system exists to get a visitor to email Bram about an internship, so nothing competes with that signal.\n\nPersonality is calm, sharp and personal rather than loud. Interaction shows craft in small, honest ways: a typewriter that writes the name once, a photo that tilts toward the mouse, a ring around the cursor, cards that lift on hover. All of it is decoration on top of a layout that already works without motion, and all of it stops under `prefers-reduced-motion`. The mood was not stated by the user; this North Star is inferred from the incumbent implementation and the amber-on-neutral discipline in it. Revisit it if the identity changes.",
+    "keyCharacteristics": [
+      "Neutral surfaces, one accent: amber, used for signals, never as large fills (except the primary call to action).",
+      "Light and dark themes with equal standing; amber text switches from `amber-ink` (light) to `signal-amber` (dark) to keep contrast.",
+      "Rounded, soft geometry: 8px controls, 16px cards, pills for status.",
+      "Motion confirms and invites; it never carries meaning on its own.",
+      "A faint grain overlay (2.5% opacity) gives the flat surfaces a tactile feel."
+    ],
+    "rules": [
+      {
+        "name": "The One Voice Rule",
+        "body": "Amber is the only accent. If a new element wants a second hue, it is a status, not an accent, and it needs a reason.",
+        "section": "colors"
+      },
+      {
+        "name": "The Contrast Pair Rule",
+        "body": "Amber text uses Amber Ink on light and Signal Amber on dark. Never put Signal Amber small text on a light surface.",
+        "section": "colors"
+      },
+      {
+        "name": "The Balanced Heading Rule",
+        "body": "Headings use `text-wrap: balance`; never leave a one-word last line.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-Until-Touched Rule",
+        "body": "Cards rest with only a hairline border and a faint shadow; hover adds a lift (8px for large cards, 2px for buttons) and an amber border. Non-interactive elements such as tags do not react to hover.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** use Signal Amber for signals only: active state, hover borders, the cursor, the primary call to action.",
+      "**Do** use Amber Ink for amber text on light surfaces and Signal Amber for amber text on dark.",
+      "**Do** keep 44px minimum touch targets and `env(safe-area-inset-*)` on anything fixed or sticky.",
+      "**Do** list transition properties explicitly (`transition-[transform,border-color]`), never `transition-all`.",
+      "**Do** put hover lifts and zooms behind `motion-safe:` and keep every animation finite or pausable.",
+      "**Do** keep text on amber fills dark (Night); it reaches about 9:1."
+    ],
+    "donts": [
+      "**Don't** add a second accent colour; use green only for availability status.",
+      "**Don't** put Signal Amber small text on light backgrounds (below 4.5:1).",
+      "**Don't** make non-interactive elements, such as tags, scale or change colour on hover.",
+      "**Don't** nest cards or stack more than one soft shadow on a surface.",
+      "**Don't** let motion carry meaning on its own; content must read and work with motion switched off.",
+      "**Don't** hide the native cursor or block pinch zoom."
+    ]
+  }
+}
