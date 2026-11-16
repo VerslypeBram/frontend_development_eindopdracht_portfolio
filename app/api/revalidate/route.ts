@@ -8,7 +8,8 @@ const TAG_MAPPING: Record<string, string> = {
   hero: 'hero',
   aboutMe: 'aboutMe',
   skills: 'skills',
-  tag: 'tag',
+  // Tag names are shown on project cards, so renaming one refreshes projects
+  tag: 'projects',
 }
 
 /** Constant-time comparison so the secret can't be guessed via timing */
