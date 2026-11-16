@@ -21,17 +21,14 @@ const portableTextComponents: PortableTextComponents = {
 }
 
 async function getProject(slug: string): Promise<Project | null> {
-  try {
-    const { data } = await sanityFetch({
-      query: `*[_type == "project" && slug.current == $slug][0]{_id, "slug": slug.current, title, description, longDescription, cloudinaryUrl, imageAlt, "tags": tags[]->name, githubUrl, liveUrl}`,
-      params: { slug },
-      tags: ['projects'],
-    })
-    return data as Project | null
-  } catch (error) {
-    console.error('Error fetching project:', error)
-    return null
-  }
+  // No try/catch: a failed fetch must not look like "project not found".
+  // During revalidation Next.js keeps serving the last good page on errors.
+  const { data } = await sanityFetch({
+    query: `*[_type == "project" && slug.current == $slug][0]{_id, "slug": slug.current, title, description, longDescription, cloudinaryUrl, imageAlt, "tags": tags[]->name, githubUrl, liveUrl}`,
+    params: { slug },
+    tags: ['projects'],
+  })
+  return data as Project | null
 }
 
 export async function generateStaticParams() {

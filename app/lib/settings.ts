@@ -30,9 +30,9 @@ export interface SiteSettings {
 }
 
 export async function getSiteSettings(): Promise<SiteSettings | null> {
-  try {
-    const { data } = await sanityFetch({
-      query: `*[_type == "siteSettings"][0]{
+  // Errors propagate: a failed fetch must not be cached as "no settings"
+  const { data } = await sanityFetch({
+    query: `*[_type == "siteSettings"][0]{
         title,
         availability,
         contactHeading,
@@ -45,11 +45,7 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
         socialLinks,
         footerText
       }`,
-      tags: ['siteSettings'],
-    })
-    return data as SiteSettings | null
-  } catch (error) {
-    console.error('Error fetching site settings:', error)
-    return null
-  }
+    tags: ['siteSettings'],
+  })
+  return data as SiteSettings | null
 }

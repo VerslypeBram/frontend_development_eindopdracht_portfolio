@@ -5,16 +5,12 @@ import { getSiteSettings } from '@/app/lib/settings'
 import type { HeroData } from '@/app/types'
 
 async function getHero(): Promise<HeroData | null> {
-  try {
-    const { data } = await sanityFetch({
-      query: `*[_type == "hero"][0]{tagline, name, bio, cloudinaryUrl, imageAlt}`,
-      tags: ['hero'],
-    })
-    return data as HeroData | null
-  } catch (error) {
-    console.error('Error fetching hero data:', error)
-    return null
-  }
+  // Errors propagate to error.tsx instead of caching an empty hero
+  const { data } = await sanityFetch({
+    query: `*[_type == "hero"][0]{tagline, name, bio, cloudinaryUrl, imageAlt}`,
+    tags: ['hero'],
+  })
+  return data as HeroData | null
 }
 
 export default async function HeroSection() {

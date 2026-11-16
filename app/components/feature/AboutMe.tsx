@@ -6,16 +6,11 @@ import type { AboutMeData } from '@/app/types'
 import SectionHeading from '@/app/components/common/SectionHeading'
 
 async function getAboutMe(): Promise<AboutMeData | null> {
-  try {
-    const { data } = await sanityFetch({
-      query: `*[_type == "aboutMe"][0]{subHeading, paragraph1, paragraph2, cloudinaryUrls[]{url, alt}}`,
-      tags: ['aboutMe'],
-    })
-    return data as AboutMeData | null
-  } catch (error) {
-    console.error('Error fetching about me data:', error)
-    return null
-  }
+  const { data } = await sanityFetch({
+    query: `*[_type == "aboutMe"][0]{subHeading, paragraph1, paragraph2, cloudinaryUrls[]{url, alt}}`,
+    tags: ['aboutMe'],
+  })
+  return data as AboutMeData | null
 }
 
 export default async function AboutMe() {
