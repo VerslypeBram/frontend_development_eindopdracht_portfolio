@@ -103,7 +103,7 @@ components:
 
 **Creative North Star: "The Warm Signal"**
 
-The surfaces are quiet: paper-white and near-black, soft neutral cards, generous space. One amber accent carries every signal: the cursor on the wordmark, the active nav underline, hover borders, the scroll progress line, and the primary call to action on the project page. When something is amber, it is where the visitor should look or act. The system exists to get a visitor to email Bram about an internship, so nothing competes with that signal.
+The surfaces are quiet: paper-white and near-black, soft neutral cards, generous space. One amber accent carries every signal: the cursor on the wordmark, the active nav underline, hover borders, the scroll progress line, and the primary call to action on the project page. When something is amber, it is where the visitor should look or act. The system exists to let the projects speak: a visitor should know who Bram is within seconds and open a project, so nothing competes with that signal.
 
 Personality is calm, sharp and personal rather than loud. Interaction shows craft in small, honest ways: a typewriter that writes the name once, a photo that tilts toward the mouse, a ring around the cursor, cards that lift on hover. All of it is decoration on top of a layout that already works without motion, and all of it stops under `prefers-reduced-motion`. The mood was not stated by the user; this North Star is inferred from the incumbent implementation and the amber-on-neutral discipline in it. Revisit it if the identity changes.
 
@@ -213,7 +213,7 @@ Soft and consistent: 8px for controls and tags, 12px for social link cards, 16px
 Lowercase "bram verslype" in Space Grotesk bold with a small Signal Amber block cursor that blinks four times and rests. It is the product's identity asset and appears in the header and footer.
 
 ### Availability badge
-A pill in green: pulsing dot (four pulses, then still) and the internship availability text. Green is reserved for this status.
+An optional pill in green: pulsing dot (four pulses, then still) and a short availability status from the CMS. It is hidden when the field is empty. Green is reserved for this status.
 
 ### Cursor ring
 On fine-pointer devices without reduced motion, a 28px Signal Amber ring follows the native cursor and grows to 44px over interactive elements. It adds to the native cursor and never hides it.
