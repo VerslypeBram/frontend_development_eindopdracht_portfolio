@@ -5,7 +5,7 @@ import { PortableText, type PortableTextComponents } from 'next-sanity'
 import type { Metadata } from 'next'
 import { client } from '@/sanity/lib/client'
 import { sanityFetch } from '@/sanity/lib/live'
-import { cloudinaryBlurUrl } from '@/app/lib/cloudinaryBlur'
+import { cloudinaryBlurUrl, cloudinaryOgUrl } from '@/app/lib/cloudinaryBlur'
 import { ArrowLeft, ExternalLink } from 'lucide-react'
 import StaticIcon from '@/app/components/common/StaticIcon'
 import Tag from '@/app/components/common/Tag'
@@ -48,15 +48,32 @@ export async function generateMetadata({
   const { slug } = await params
   const project = await getProject(slug)
   if (!project) return { title: 'Project not found' }
+  const ogImage = cloudinaryOgUrl(project.cloudinaryUrl)
   return {
     title: project.title,
     description: project.description,
     alternates: { canonical: `/projects/${slug}` },
+    // Setting openGraph replaces the root one, so repeat the shared fields
     openGraph: {
       title: project.title,
       description: project.description,
-      images: project.cloudinaryUrl ? [{ url: project.cloudinaryUrl }] : [],
+      url: `/projects/${slug}`,
+      siteName: 'Bram Verslype Portfolio',
+      locale: 'en_US',
+      type: 'article',
+      // Without an image, fall back to the generated site-wide preview
+      images: ogImage
+        ? [
+            {
+              url: ogImage,
+              width: 1200,
+              height: 630,
+              alt: project.imageAlt || project.title,
+            },
+          ]
+        : undefined,
     },
+    twitter: { card: 'summary_large_image' },
   }
 }
 
