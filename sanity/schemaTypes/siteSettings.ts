@@ -18,7 +18,37 @@ export const siteSettings = defineType({
       title: 'Availability',
       type: 'string',
       description:
-        'Short status shown in the hero and contact section, e.g. "Looking for an internship · 15 Feb – 4 Jun 2027 · Kortrijk area". Leave empty to hide.',
+        'Optional short status with a green dot, shown in the hero and contact section. Leave empty to hide.',
+    }),
+    defineField({
+      name: 'contactHeading',
+      title: 'Contact Heading',
+      type: 'string',
+      description: 'Heading of the contact section, e.g. "Get in Touch".',
+    }),
+    defineField({
+      name: 'contactText',
+      title: 'Contact Text',
+      type: 'text',
+      rows: 2,
+      description: 'Short invitation shown above the email address.',
+    }),
+    defineField({
+      name: 'seoDescription',
+      title: 'SEO Description',
+      type: 'text',
+      rows: 3,
+      description:
+        'Shown in Google results and link previews. Aim for 120 to 160 characters.',
+      validation: Rule => Rule.max(200),
+    }),
+    defineField({
+      name: 'ogTagline',
+      title: 'Link Preview Tagline',
+      type: 'string',
+      description:
+        'One line under your name in the link preview image (LinkedIn, Slack, …).',
+      validation: Rule => Rule.max(60),
     }),
     defineField({
       name: 'email',

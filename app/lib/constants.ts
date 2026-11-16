@@ -5,6 +5,13 @@ import type { NavLink, SocialLink } from './settings'
 
 export const DEFAULT_EMAIL = 'bram.verslype@student.howest.be'
 
+export const DEFAULT_CONTACT_HEADING = 'Get in Touch'
+export const DEFAULT_CONTACT_TEXT =
+  'Questions about a project, or just want to connect? I’d love to hear from you.'
+export const DEFAULT_SEO_DESCRIPTION =
+  'Portfolio of Bram Verslype, Multimedia & Creative Technology student (Next Web Developer) at Howest, Kortrijk. Projects in React, Next.js and IoT.'
+export const DEFAULT_OG_TAGLINE = 'Projects in React, Next.js and IoT'
+
 export const DEFAULT_NAV_LINKS: NavLink[] = [
   { href: '#about', label: 'About Me' },
   { href: '#skills', label: 'Expertise' },

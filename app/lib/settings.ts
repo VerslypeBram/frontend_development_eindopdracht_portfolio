@@ -17,6 +17,10 @@ export interface SocialLink {
 export interface SiteSettings {
   title: string
   availability?: string
+  contactHeading?: string
+  contactText?: string
+  seoDescription?: string
+  ogTagline?: string
   email?: string
   /** Public URL of the uploaded CV PDF */
   cvUrl?: string
@@ -31,6 +35,10 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
       query: `*[_type == "siteSettings"][0]{
         title,
         availability,
+        contactHeading,
+        contactText,
+        seoDescription,
+        ogTagline,
         email,
         "cvUrl": cvFile.asset->url,
         navLinks,

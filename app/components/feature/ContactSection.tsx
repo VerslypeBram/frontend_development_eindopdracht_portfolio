@@ -4,7 +4,12 @@ import StaticIcon from '@/app/components/common/StaticIcon'
 import Button from '@/app/components/common/Button'
 import FadeIn from '@/app/components/common/FadeIn'
 import SectionHeading from '@/app/components/common/SectionHeading'
-import { DEFAULT_EMAIL, resolveSocialLinks } from '@/app/lib/constants'
+import {
+  DEFAULT_CONTACT_HEADING,
+  DEFAULT_CONTACT_TEXT,
+  DEFAULT_EMAIL,
+  resolveSocialLinks,
+} from '@/app/lib/constants'
 import { getSiteSettings } from '@/app/lib/settings'
 
 export default async function ContactSection() {
@@ -26,7 +31,7 @@ export default async function ContactSection() {
         <FadeIn className="mb-10 text-center">
           <SectionHeading
             eyebrow="Contact"
-            title="Let’s Work Together"
+            title={settings?.contactHeading || DEFAULT_CONTACT_HEADING}
             className="mb-6"
           />
           {settings?.availability && (
@@ -35,8 +40,7 @@ export default async function ContactSection() {
             </AvailabilityBadge>
           )}
           <p className="mx-auto max-w-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
-            Looking for a motivated web development intern, or have a project in
-            mind? I&rsquo;d love to hear from you.
+            {settings?.contactText || DEFAULT_CONTACT_TEXT}
           </p>
 
           {/* Address as visible text: the mailto button does nothing for

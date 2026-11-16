@@ -1,4 +1,6 @@
 import { ImageResponse } from 'next/og'
+import { client } from '@/sanity/lib/client'
+import { DEFAULT_OG_TAGLINE } from './lib/constants'
 
 // Image metadata
 export const alt = 'Bram Verslype — Web Developer & MCT Student'
@@ -9,7 +11,14 @@ export const size = {
 export const contentType = 'image/png'
 
 // Image generation: shown as link preview on LinkedIn, Slack, etc.
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
+  // Editable in Sanity (Site Settings → Link Preview Tagline)
+  const tagline = await client
+    .fetch<
+      string | null
+    >(`*[_type == "siteSettings"][0].ogTagline`, {}, { next: { tags: ['siteSettings'] } })
+    .catch(() => null)
+
   return new ImageResponse(
     <div
       style={{
@@ -65,7 +74,7 @@ export default function OpengraphImage() {
           color: '#a3a3a3',
         }}
       >
-        Looking for a web dev internship · Feb–Jun 2027 · Kortrijk
+        {tagline || DEFAULT_OG_TAGLINE}
       </div>
       <div
         style={{
