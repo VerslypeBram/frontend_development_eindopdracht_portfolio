@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next'
 import { Space_Grotesk } from 'next/font/google'
 import localFont from 'next/font/local'
 import '@/env'
+import { DEFAULT_SEO_DESCRIPTION } from './lib/constants'
+import { getSiteSettings } from './lib/settings'
 import { SITE_URL } from './lib/site'
 import './globals.css'
 
@@ -22,8 +24,6 @@ const satoshi = localFont({
 })
 
 const SITE_TITLE = 'Bram Verslype — Web Developer & MCT Student'
-const SITE_DESCRIPTION =
-  'Portfolio of Bram Verslype, Multimedia & Creative Technology student (Next Web Developer) at Howest, Kortrijk. Looking for a web development internship from 15 February to 4 June 2027 in the Kortrijk area. Projects in React, Next.js and IoT.'
 
 // viewport-fit=cover lets the page draw behind the iPhone status bar and
 // notch; the header and project pages pad themselves with the safe-area
@@ -36,25 +36,31 @@ export const viewport: Viewport = {
   ],
 }
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: SITE_TITLE,
-    template: '%s | Bram Verslype',
-  },
-  description: SITE_DESCRIPTION,
-  alternates: { canonical: '/' },
-  openGraph: {
-    title: SITE_TITLE,
-    description: SITE_DESCRIPTION,
-    url: '/',
-    siteName: 'Bram Verslype Portfolio',
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-  },
+// The description is editable in Sanity (Site Settings → SEO Description)
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings()
+  const description = settings?.seoDescription || DEFAULT_SEO_DESCRIPTION
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: SITE_TITLE,
+      template: '%s | Bram Verslype',
+    },
+    description,
+    alternates: { canonical: '/' },
+    openGraph: {
+      title: SITE_TITLE,
+      description,
+      url: '/',
+      siteName: 'Bram Verslype Portfolio',
+      locale: 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+    },
+  }
 }
 
 export default function RootLayout({

@@ -1,4 +1,4 @@
-/** Pill with a green status dot, e.g. "Looking for an internship · Feb–Jun 2027" */
+/** Pill with a green status dot; shown only when a status is set in the CMS */
 export default function AvailabilityBadge({
   children,
   className = '',

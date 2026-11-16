@@ -6,16 +6,11 @@ import type { SkillsData } from '@/app/types'
 import SectionHeading from '@/app/components/common/SectionHeading'
 
 async function getSkills(): Promise<SkillsData | null> {
-  try {
-    const { data } = await sanityFetch({
-      query: `*[_type == "skills"][0]{skillCategories}`,
-      tags: ['skills'],
-    })
-    return data as SkillsData | null
-  } catch (error) {
-    console.error('Error fetching skills data:', error)
-    return null
-  }
+  const { data } = await sanityFetch({
+    query: `*[_type == "skills"][0]{skillCategories}`,
+    tags: ['skills'],
+  })
+  return data as SkillsData | null
 }
 
 export default async function SkillsSection() {

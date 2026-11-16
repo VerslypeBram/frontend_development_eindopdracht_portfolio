@@ -264,7 +264,7 @@ export default function HeroSectionClient({
               src={hero.cloudinaryUrl}
               alt={hero.imageAlt || `Photo of ${hero.name}`}
               fill
-              sizes="(max-width: 480px) 100vw, (max-width: 768px) 256px, 320px"
+              sizes="(max-width: 640px) min(calc(100vw - 2rem), 320px), (max-width: 768px) 256px, 320px"
               quality={80}
               className="object-cover transition-transform duration-500 motion-safe:hover:scale-[1.2]"
               priority

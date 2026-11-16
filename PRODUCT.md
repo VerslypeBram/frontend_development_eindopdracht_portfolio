@@ -8,19 +8,19 @@ web
 
 ## Users
 
-Primary: anyone evaluating Bram Verslype as a developer. All four audiences are confirmed and none outranks the others:
-- companies and recruiters looking for a web development intern (Bram seeks an internship from 15 February to 4 June 2027 in the Kortrijk area);
+Primary: anyone evaluating Bram Verslype as a developer. All audiences are confirmed and none outranks the others:
 - teachers and assessors at Howest, because the site is also the Front-End Development final assignment;
-- potential clients with a project in mind (the contact section invites this);
+- potential clients with a project in mind;
+- future employers and recruiters (Bram already has an internship arranged, so the site no longer asks for one);
 - other developers and Bram's network.
 
-The job: decide quickly whether Bram is worth contacting, then verify it through real projects.
+The job: understand who Bram is, then verify it through real projects. Contact is welcome but is not the conversion the site pushes.
 
 ## Product Purpose
 
 Personal portfolio of Bram Verslype, a Multimedia & Creative Technology student (Next Web Developer track) at Howest, Kortrijk. It presents who he is, his skills and his projects (React, Next.js, IoT).
 
-Success: within about 30 seconds a visitor knows who Bram is and emails him about an internship. Downloading the CV is the secondary action. Projects are the evidence behind that decision.
+Primary goal: showcase and network. Success: within about 30 seconds a visitor knows who Bram is, and the projects convince them of his skill. Opening a project is the main action; emailing him or downloading the CV is available but never pushed. Projects are the evidence.
 
 ## Positioning
 
@@ -38,7 +38,8 @@ Undecided. The existing site copy says "Design-minded developer focused on build
 - Stack in place: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Framer Motion, `next-themes` (light and dark), Sanity v5, Cloudinary for images, Zod-validated env variables.
 - All texts, projects, skills, tags, nav links and social links come from Sanity; `app/lib/constants.ts` holds fallbacks that must stay in sync with the CMS.
 - Contact: email address, optional CV download, GitHub and LinkedIn.
-- Internship availability is shown through an availability badge fed by the CMS.
+- The availability badge is optional and fed by the CMS (Site Settings → Availability). It is empty by default and hidden when empty; use it only for a status Bram confirms.
+- Contact heading and text, the SEO description and the link-preview tagline are CMS fields too, with fallbacks in `app/lib/constants.ts`.
 - Deliberately limited motion: everything must degrade under `prefers-reduced-motion`.
 
 ## Brand Commitments
@@ -54,11 +55,11 @@ Undecided. The existing site copy says "Design-minded developer focused on build
 
 ## Product Principles
 
-1. Lead with contact: the internship email is the primary outcome and must stay one obvious action away.
+1. Lead with the work: a visitor should reach a real project within one or two actions. Contact stays one visible step away without being pushed.
 2. Projects are the proof: claims about skill should always be backed by a project a visitor can open.
 3. Content lives in the CMS: nothing editorial is hard-coded, so Bram can update the site without a deploy.
 4. Accessible by default: WCAG AA contrast, 44px touch targets, keyboard and reduced-motion support are part of the product, not polish.
-5. Stay truthful about availability: the internship dates and location shown must match what Bram confirms.
+5. Stay truthful about availability: any status shown in the badge must match what Bram confirms, and it stays hidden otherwise.
 
 ## Accessibility & Inclusion
 
