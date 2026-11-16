@@ -185,27 +185,29 @@ export default function NavBar({ navLinks }: NavBarProps) {
                 const id = href.startsWith('#') ? href.substring(1) : null
                 const isActive = id ? activeSection === id : false
                 return (
-                  <li key={href} className="flex min-h-11 items-center">
-                    <span className="relative pb-1">
-                      <Link
-                        href={href}
-                        onClick={() => setMobileOpen(false)}
-                        className={`text-base font-medium transition-colors ${isActive ? 'text-neutral-900 dark:text-white' : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white'}`}
-                      >
+                  <li key={href}>
+                    {/* The whole 44px row is the link, not just the text */}
+                    <Link
+                      href={href}
+                      onClick={() => setMobileOpen(false)}
+                      aria-current={isActive ? 'location' : undefined}
+                      className={`flex min-h-11 w-full items-center text-base font-medium transition-colors ${isActive ? 'text-neutral-900 dark:text-white' : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white'}`}
+                    >
+                      <span className="relative pb-1">
                         {label}
-                      </Link>
-                      {isActive && (
-                        <motion.span
-                          layoutId="nav-underline-mobile"
-                          className="absolute right-0 bottom-0 left-0 h-0.5 rounded-full bg-amber-500"
-                          transition={{
-                            type: 'spring',
-                            stiffness: 380,
-                            damping: 30,
-                          }}
-                        />
-                      )}
-                    </span>
+                        {isActive && (
+                          <motion.span
+                            layoutId="nav-underline-mobile"
+                            className="absolute right-0 bottom-0 left-0 h-0.5 rounded-full bg-amber-500"
+                            transition={{
+                              type: 'spring',
+                              stiffness: 380,
+                              damping: 30,
+                            }}
+                          />
+                        )}
+                      </span>
+                    </Link>
                   </li>
                 )
               })}
